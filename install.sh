@@ -1,2 +1,2 @@
 # TODO - get current directory instead of hardcoding
-echo "source ~/dotfiles/test.sh" >> ~/.bashrc
+echo "source ~/dotfiles/aliases.sh" >> ~/.bashrc
