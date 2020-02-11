@@ -1,2 +1,2 @@
 echo "Hello"
-echo "Hello" > ~/temp.txt
+export FOO=BAR
