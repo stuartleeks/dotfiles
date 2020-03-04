@@ -1,3 +1,5 @@
+#!/bin/bash
+
 BASE_DIR=$(dirname "$0")
 
 bash bash-completion.sh
