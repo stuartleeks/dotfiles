@@ -2,7 +2,7 @@
 
 BASE_DIR=$(dirname "$0")
 
-bash install-bash-completion.sh
+bash "$BASE_DIR/install-bash-completion.sh"
 
 echo "Adding aliases to .bashrc..."
 echo -e "source \"$BASE_DIR/aliases.sh\"\n" >> ~/.bashrc
