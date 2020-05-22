@@ -4,6 +4,8 @@ BASE_DIR=$(dirname "$0")
 
 bash "$BASE_DIR/install-bash-completion.sh"
 
+bash "$BASE_DIR/git-aliases.sh"
+
 echo "Adding aliases to .bashrc..."
 echo -e "source \"$BASE_DIR/aliases.sh\"\n" >> ~/.bashrc
 
