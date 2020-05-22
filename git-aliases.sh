@@ -10,7 +10,6 @@ if [[ $(which git > /dev/null; echo $?) == "0" ]]; then
     git config --global --replace-all alias.fl 'log -u'
     git config --global --replace-all alias.logtree 'log --graph --oneline --decorate --all'
     git config --global --replace-all alias.wipe "!git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard"
-    git config --global --replace-all alias.foo wibble
 else
     echo "git not found - skipping aliases"
 fi
