@@ -9,3 +9,5 @@ alias l='ls -CF'
 
 # helper to reset the marker files to reinstall extensions on reloading the devcontainer
 reset-vscode-extensions() { rm ~/.vscode-server/data/Machine/.installExtensionsMarker; rm ~/.vscode-server/data/Machine/.postCreateCommandMarker; }
+
+function set-prompt() { echo -ne '\033]0;' $@ '\a'; }
