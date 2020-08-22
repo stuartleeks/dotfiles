@@ -7,7 +7,12 @@ source "$DOTFILES_FOLDER/aliases/load.sh"
 source "$DOTFILES_FOLDER/bash-git-prompt/load.sh"
 
 if [[ -n $WSL_DISTRO_NAME ]]; then
+    source "$DOTFILES_FOLDER/wsl/load.sh"
     free-mem() { sudo "$DOTFILES_FOLDER/wsl/free-mem.sh"; }
+fi
+
+if (command -v go > /dev/null); then
+    source "$DOTFILES_FOLDER/go/load.sh"
 fi
 
 # TODO

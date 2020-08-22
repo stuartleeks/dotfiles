@@ -17,7 +17,7 @@ bash "$BASE_DIR/bash-git-prompt/install.sh"
 # Don't want to set on install as it breaks gitconfig integration in devcontainers
 # bash "$BASE_DIR/git-aliases.sh"
 
-if [[ $(grep -q DOTFILES_FOLDER ~/.bashrc; echo $?) == 0 ]]; then
+if grep -q DOTFILES_FOLDER ~/.bashrc; then
     echo "dotfiles loader already in .bashrc - skipping"
 else
     echo "Adding dotfiles loader to .bashrc..."
