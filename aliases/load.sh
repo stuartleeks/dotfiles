@@ -28,3 +28,7 @@ if [[ $(command -v kubectl > /dev/null; echo $?) == 0 ]]; then
     source <(kubectl completion bash)
     source <(kubectl completion bash | sed s/kubectl/k/g)
 fi
+
+if [[ $(command -v kind > /dev/null; echo $?) == 0 ]]; then
+    source <(kind completion bash)
+fi
