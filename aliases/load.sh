@@ -15,18 +15,20 @@ function set-prompt() { echo -ne '\033]0;' $@ '\a'; }
 if [[ $(command -v devcontainer > /dev/null; echo $?) == 0 ]]; then
     source <(devcontainer completion bash)
     alias dc=devcontainer
-    source <(devcontainer completion bash | sed s/devcontainer/dc/g)
+    complete -F __start_devcontainer dc
 fi
 
-if [[ $(command -v azvbrowse > /dev/null; echo $?) == 0 ]]; then
+if [[ $(command -v azbrowse > /dev/null; echo $?) == 0 ]]; then
     source <(azbrowse completion bash)
+    alias azb=azbrowse
+    complete -F __start_azbrowse azb
 fi
 
 
 if [[ $(command -v kubectl > /dev/null; echo $?) == 0 ]]; then
     alias k=kubectl
     source <(kubectl completion bash)
-    source <(kubectl completion bash | sed s/kubectl/k/g)
+    complete -F __start_kubectl k
 fi
 
 if [[ $(command -v kind > /dev/null; echo $?) == 0 ]]; then
