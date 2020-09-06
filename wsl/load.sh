@@ -2,9 +2,13 @@
 wcode() { cmd.exe /C code ''$(wslpath -w $1)''; }
 wcode-insiders() { cmd.exe /C code-insiders ''$(wslpath -w $1)''; }
 
+# Create function to launch Windows Terminal (cmd version is faster but doesn't support UNC paths (including \\wsl$ paths)
+#wt(){ cmd.exe /C "wt.exe $@" ; }
+wt(){ powershell.exe -Command "wt.exe $@" ; }
 
 alias gitk=gitk.exe
-
+alias clip=clip.exe
+alias explorer=explorer.exe
 
 if [[ $(command -v npiperelay.exe > /dev/null; echo $?) == 0 ]]; then
     if [[ $(command -v setsid > /dev/null; echo $?) == 0 ]]; then
