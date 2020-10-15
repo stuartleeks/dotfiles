@@ -9,7 +9,7 @@
 BASE_DIR=$(dirname "$0")
 BASE_DIR=$(cd $BASE_DIR; pwd)
 
-bash "$BASE_DIR/bash-completion/install.sh"
+sudo bash "$BASE_DIR/bash-completion/install.sh"
 
 bash "$BASE_DIR/bash-git-prompt/install.sh"
 
