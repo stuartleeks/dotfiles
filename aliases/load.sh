@@ -16,6 +16,8 @@ if [[ $(command -v devcontainer > /dev/null; echo $?) == 0 ]]; then
     source <(devcontainer completion bash)
     alias dc=devcontainer
     complete -F __start_devcontainer dc
+
+    alias dco="devcontainer open-in-code ."
 fi
 
 if [[ $(command -v azbrowse > /dev/null; echo $?) == 0 ]]; then
