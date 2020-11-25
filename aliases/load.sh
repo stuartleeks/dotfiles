@@ -36,3 +36,13 @@ fi
 if [[ $(command -v kind > /dev/null; echo $?) == 0 ]]; then
     source <(kind completion bash)
 fi
+
+
+# https://meyerweb.com/eric/thoughts/2020/09/29/polite-bash-commands/
+please() {
+	if [ "$1" ]; then
+		sudo $@
+	else
+		sudo "$BASH" -c "$(history -p !!)"
+	fi
+}
