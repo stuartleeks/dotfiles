@@ -18,6 +18,7 @@ if [[ $(command -v devcontainer > /dev/null; echo $?) == 0 ]]; then
     complete -F __start_devcontainer dc
 
     alias dco="devcontainer open-in-code ."
+    alias dce="devcontainer exec ? bash"
 fi
 
 if [[ $(command -v azbrowse > /dev/null; echo $?) == 0 ]]; then
