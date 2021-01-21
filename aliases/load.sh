@@ -37,3 +37,8 @@ fi
 if [[ $(command -v kind > /dev/null; echo $?) == 0 ]]; then
     source <(kind completion bash)
 fi
+
+
+if [[ $(command -v az > /dev/null; echo $?) == 0 ]]; then
+    function get-alias() { az ad user list --filter "mail eq '$1'" --query [0].userPrincipalName -o tsv; }
+fi
