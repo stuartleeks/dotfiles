@@ -42,3 +42,7 @@ fi
 if [[ $(command -v az > /dev/null; echo $?) == 0 ]]; then
     function get-alias() { az ad user list --filter "mail eq '$1'" --query [0].userPrincipalName -o tsv; }
 fi
+
+if [[ $(command -v thefuck > /dev/null; echo $?) == 0 ]]; then
+    eval $(thefuck --alias grr)
+fi
