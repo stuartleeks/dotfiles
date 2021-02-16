@@ -32,4 +32,14 @@ if [[ $(command -v socat > /dev/null; echo $?) == 1 ]]; then
     sudo apt update && sudo apt install -y socat
 fi
 
+if [[ $(command -v azbrowse > /dev/null; echo $?) == 1 ]]; then
+    echo "Installing azbrowse"
+    mkdir -p ~/bin
+    export AZBROWSE_LATEST=$(wget -O - -q https://api.github.com/repos/lawrencegripper/azbrowse/releases/latest | grep 'browser_' | cut -d\" -f4 | grep linux_amd64.tar.gz)
+    wget "$AZBROWSE_LATEST"
+    tar -C ~/bin -zxvf azbrowse_linux_amd64.tar.gz azbrowse
+    chmod +x ~/bin/azbrowse
+    rm azbrowse_linux_amd64.tar.gz
+fi
+
 echo "Done"

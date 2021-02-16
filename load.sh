@@ -3,6 +3,8 @@
 # It is added to .bashrc by install.sh
 #
 
+export PATH=$PATH:~/bin
+
 source "$DOTFILES_FOLDER/aliases/load.sh"
 source "$DOTFILES_FOLDER/bash-completion/load.sh"
 source "$DOTFILES_FOLDER/bash-git-prompt/load.sh"
