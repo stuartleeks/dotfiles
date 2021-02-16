@@ -36,11 +36,22 @@ if [[ $(command -v npiperelay.exe > /dev/null; echo $?) == 0 ]]; then
                 echo "Starting SSH-Agent relay..."
                 # setsid to force new session to keep running
                 # set socat to listen on $SSH_AUTH_SOCK and forward to npiperelay which then forwards to openssh-ssh-agent on windows
-                (setsid socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:"npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &) 2>&1 > /dev/null
+                (setsid socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:"npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &) > /dev/null  2>&1 
             else
                 echo "SSH key forwarding already running"
             fi
 
         fi
+    fi
+fi
+
+
+if [[ $(command -v socat > /dev/null; echo $?) == 0 ]]; then
+    # Start up the socat forwarder to clip.exe
+    # see aliases/load.sh for adding clip.sh to path (as xclip/xsel) to forward clipboard access to this listener
+    ALREADY_RUNNING=$(ps -auxww | grep -q "[l]isten:8121"; echo $?)
+    if [[ $ALREADY_RUNNING != "0" ]]; then
+        echo "Starting clipboard relay..."
+        (setsid socat tcp-listen:8121,fork,bind=0.0.0.0 EXEC:'clip.exe' &) > /dev/null 2>&1 
     fi
 fi

@@ -46,3 +46,10 @@ fi
 if [[ $(command -v thefuck > /dev/null; echo $?) == 0 ]]; then
     eval $(thefuck --alias grr)
 fi
+
+if [[ -z $WSL_DISTRO_NAME ]]; then
+    ## not on WSL - assume in devcontainer for now!
+    ## add clip folder to path to override xsel/xclip with WSL versions!
+    DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+    export PATH=$DIR/clip:$PATH
+fi
