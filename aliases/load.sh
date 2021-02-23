@@ -47,6 +47,12 @@ if [[ $(command -v thefuck > /dev/null; echo $?) == 0 ]]; then
     eval $(thefuck --alias grr)
 fi
 
+
+if [[ $(command -v gh > /dev/null; echo $?) == 0 ]]; then
+    eval "$(gh completion -s bash)"
+fi
+
+
 if [[ -n $DEV_CONTAINER ]]; then
     ## In a dev container
     ## add clip folder to path to override xsel/xclip with WSL versions!
