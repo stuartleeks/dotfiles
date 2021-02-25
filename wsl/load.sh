@@ -57,3 +57,5 @@ if [[ $(command -v socat > /dev/null; echo $?) == 0 ]]; then
         echo "Clipboard relay already running"
     fi
 fi
+
+free-mem() { sudo "$DOTFILES_FOLDER/wsl/free-mem.sh"; }

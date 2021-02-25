@@ -11,7 +11,6 @@ source "$DOTFILES_FOLDER/bash-git-prompt/load.sh"
 
 if [[ -n $WSL_DISTRO_NAME ]]; then
     source "$DOTFILES_FOLDER/wsl/load.sh"
-    free-mem() { sudo "$DOTFILES_FOLDER/wsl/free-mem.sh"; }
 fi
 
 if (command -v go > /dev/null); then
@@ -22,3 +21,7 @@ fi
 # - completion for azbrowse if installed
 # - completion for devcontainer-cli (dc) if installed
 # - completion for kubectl (k) if installed
+
+if [[ -n $DEV_CONTAINER ]]; then
+    source "$DOTFILES_FOLDER/devcontainer/load.sh"
+fi
