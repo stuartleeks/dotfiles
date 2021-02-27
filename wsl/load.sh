@@ -13,6 +13,8 @@ alias explorer=explorer.exe
 if [[ $(command -v npiperelay.exe > /dev/null; echo $?) == 0 ]]; then
     if [[ $(command -v setsid > /dev/null; echo $?) == 0 ]]; then
         if [[ $(command -v socat > /dev/null; echo $?) == 0 ]]; then
+
+            stop-ssh-relay() { kill $(ps -auxww | grep "[n]piperelay.exe -ei -s //./pipe/openssh-ssh-agent" | awk '{ print $2 }'); }
             #
             # Set up ssh agent forwarding to host
             #
