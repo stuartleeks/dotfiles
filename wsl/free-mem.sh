@@ -9,6 +9,6 @@ fi
 echo $FREE_ARGS | xargs free
 
 sync
-echo 3 > /proc/sys/vm/drop_caches
+echo 1 > /proc/sys/vm/drop_caches
 
 echo $FREE_ARGS | xargs free
