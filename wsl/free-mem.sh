@@ -1,14 +1,18 @@
 #!/bin/bash
+set -e
 
-FREE_ARGS="-k"
-
+# Determine whether the version of `free` supports -h
+free_args="-k"
 if [[ $(free --help  2>&1 | grep -q human; echo $?) == 0 ]]; then
-    FREE_ARGS="-h"
+    free_args="-h"
 fi
 
-echo $FREE_ARGS | xargs free
+echo "Memory before:"
+echo $free_args | xargs free
 
+echo -e "\nDropping caches../"
 sync
 echo 1 > /proc/sys/vm/drop_caches
 
-echo $FREE_ARGS | xargs free
+echo -e "\nMemory after:"
+echo $free_args | xargs free
