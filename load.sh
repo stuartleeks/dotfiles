@@ -25,3 +25,7 @@ fi
 if [[ -n $DEV_CONTAINER ]]; then
     source "$DOTFILES_FOLDER/devcontainer/load.sh"
 fi
+
+if [[ -z $DEV_CONTAINER ]];then
+    TZ='Europe/London'; export TZ
+fi
