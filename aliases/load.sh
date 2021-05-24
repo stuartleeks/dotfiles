@@ -6,6 +6,8 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
 
 # helper to reset the marker files to reinstall extensions on reloading the devcontainer
 reset-vscode-extensions() { rm ~/.vscode-server/data/Machine/.installExtensionsMarker; rm ~/.vscode-server/data/Machine/.postCreateCommandMarker; }
@@ -51,5 +53,7 @@ fi
 if [[ $(command -v gh > /dev/null; echo $?) == 0 ]]; then
     eval "$(gh completion -s bash)"
     
-    alias ghrun="gh run list | grep \$(git rev-parse --abbrev-ref HEAD) | cut -d$'\t' -f 8 | xargs gh run watch && notify-send 'Run finished'"
+    # Original ghrun alias
+    # alias ghrun="gh run list | grep \$(git rev-parse --abbrev-ref HEAD) | cut -d$'\t' -f 8 | xargs gh run watch && notify-send 'Run finished'"
+    alias ghrun="$DIR/ghrun.sh"
 fi
