@@ -61,3 +61,7 @@ if [[ $(command -v socat > /dev/null; echo $?) == 0 ]]; then
 fi
 
 free-mem() { sudo "$DOTFILES_FOLDER/wsl/free-mem.sh"; }
+
+if [[ $(command -v wsl-notify-send.exe > /dev/null; echo $?) == 0 ]]; then 
+    notify-send() { wsl-notify-send.exe --category $WSL_DISTRO_NAME "${@}"; }
+fi
