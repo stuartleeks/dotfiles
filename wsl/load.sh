@@ -1,3 +1,5 @@
+dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
 # wcode - open code as if from Windows via \\wsl$ path
 wcode() { cmd.exe /C code ''$(wslpath -w $1)''; }
 wcode-insiders() { cmd.exe /C code-insiders ''$(wslpath -w $1)''; }
@@ -47,7 +49,6 @@ if [[ $(command -v npiperelay.exe > /dev/null; echo $?) == 0 ]]; then
     fi
 fi
 
-
 if [[ $(command -v socat > /dev/null; echo $?) == 0 ]]; then
     # Start up the socat forwarder to clip.exe
     # see aliases/load.sh for adding clip.sh to path (as xclip/xsel) to forward clipboard access to this listener
@@ -57,6 +58,15 @@ if [[ $(command -v socat > /dev/null; echo $?) == 0 ]]; then
         (setsid socat tcp-listen:8121,fork,bind=0.0.0.0 EXEC:'clip.exe' &) > /dev/null 2>&1 
     else
         echo "Clipboard relay already running"
+    fi
+
+    # Start up socat forwarder for toast/wsl-notify-send
+    ALREADY_RUNNING=$(ps -auxww | grep -q "[l]isten:8122"; echo $?)
+    if [[ $ALREADY_RUNNING != "0" ]]; then
+        echo "Starting toast relay..."
+        (setsid socat tcp-listen:8122,fork,bind=0.0.0.0 EXEC:"$dir/toast/toast-wsl-forwarder.sh" &) > /dev/null 2>&1 
+    else
+        echo "Toast relay already running"
     fi
 fi
 
