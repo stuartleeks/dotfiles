@@ -5,19 +5,24 @@
 # See https://github.com/stuartleeks/wsl-notify-send and https://github.com/go-toast/toast
 
 command=""
+echo "Start:" > /home/stuart/toast-debug
 while read line; 
 do 
+    echo "$line" >> /home/stuart/toast-debug
     if [[ -z $command ]]; then
         # Determine which command to run
-        if [[ $line == "notify-send" ]]; then
+        if [[ $line =~ notify-send$ ]]; then
+            # first arg/line ends with notify-send (e.g. /home/vscode/dotfiles/devcontainer/toast/notify-send)
             command="wsl-notify-send.exe"
         else
-           command="toast.exe"
+            command="toast.exe"
         fi
         command+=" "
     else
-        # Add to the command args
-        command+='"'$line'" '
+        if [[ -n $line ]]; then
+            # Add to the command args
+            command+='"'$line'" '
+        fi
     fi
 done  <&0 # read stdin
 
