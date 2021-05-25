@@ -49,6 +49,12 @@ if [[ $(command -v thefuck > /dev/null; echo $?) == 0 ]]; then
     eval $(thefuck --alias grr)
 fi
 
+if [[ -z $DEV_CONTAINER ]]; then
+    # if not in a dev container then set aliases for toast/notify-send
+    alias toast=toast.exe
+    alias notify-send=wsl-notify-send.exe
+fi
+
 
 if [[ $(command -v gh > /dev/null; echo $?) == 0 ]]; then
     eval "$(gh completion -s bash)"

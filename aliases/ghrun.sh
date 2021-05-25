@@ -28,7 +28,7 @@ else
     title="Run completed with exit code $exit_code"
 fi
 
-toast.exe \
+toast \
     --app-id "GitHub" \
     --title "$title" \
     --message "$PWD" \
