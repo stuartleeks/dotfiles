@@ -17,11 +17,6 @@ if (command -v go > /dev/null); then
     source "$DOTFILES_FOLDER/go/load.sh"
 fi
 
-# TODO
-# - completion for azbrowse if installed
-# - completion for devcontainer-cli (dc) if installed
-# - completion for kubectl (k) if installed
-
 if [[ -n $DEV_CONTAINER ]]; then
     source "$DOTFILES_FOLDER/devcontainer/load.sh"
 fi
