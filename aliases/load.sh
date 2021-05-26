@@ -52,7 +52,7 @@ fi
 if [[ -z $DEV_CONTAINER ]]; then
     # if not in a dev container then set aliases for toast/notify-send
     alias toast=toast.exe
-    alias notify-send=wsl-notify-send.exe
+    notify-send() { /mnt/c/tools/wsl-notify-send.exe --category "$WSL_DISTRO_NAME" "$@"; }
 fi
 
 
