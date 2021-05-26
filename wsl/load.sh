@@ -72,6 +72,12 @@ fi
 
 free-mem() { sudo "$DOTFILES_FOLDER/wsl/free-mem.sh"; }
 
-if [[ $(command -v wsl-notify-send.exe > /dev/null; echo $?) == 0 ]]; then 
-    notify-send() { wsl-notify-send.exe --category $WSL_DISTRO_NAME "${@}"; }
+
+
+if [[ -z $DEV_CONTAINER ]]; then
+    # if not in a dev container then set aliases for toast/notify-send
+    alias toast=toast.exe
+    if [[ $(command -v wsl-notify-send.exe > /dev/null; echo $?) == 0 ]]; then 
+        notify-send() { /mnt/c/tools/wsl-notify-send.exe --category "$WSL_DISTRO_NAME" "$@"; }
+    fi
 fi
