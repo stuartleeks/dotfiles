@@ -14,7 +14,6 @@ temp_filename=$(mktemp)
 # clean up the temp file on exit
 function finish {
   rm "$temp_filename"
-echo
 }
 trap finish EXIT
 
