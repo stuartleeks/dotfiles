@@ -73,7 +73,6 @@ fi
 free-mem() { sudo "$DOTFILES_FOLDER/wsl/free-mem.sh"; }
 
 
-
 if [[ -z $DEV_CONTAINER ]]; then
     # if not in a dev container then set aliases for toast/notify-send
     alias toast=toast.exe
