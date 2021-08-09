@@ -7,4 +7,4 @@ if [[ "$SIGNED_IN" != "0" ]]; then
     # Should be fine to remove once this is merged: https://github.com/Azure/azure-cli/pull/16556
     DISPLAY=:0 az login > /dev/null 2>&1
 fi
-~/bin/azbrowse --subscription mpeck-stuartle
+~/.local/bin/azbrowse --subscription mpeck-stuartle

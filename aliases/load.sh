@@ -14,13 +14,13 @@ reset-vscode-extensions() { rm ~/.vscode-server/data/Machine/.installExtensionsM
 
 function set-prompt() { echo -ne '\033]0;' $@ '\a'; }
 
-if [[ $(command -v devcontainer > /dev/null; echo $?) == 0 ]]; then
-    source <(devcontainer completion bash)
-    alias dc=devcontainer
-    complete -F __start_devcontainer dc
+if [[ $(command -v devcontainerx > /dev/null; echo $?) == 0 ]]; then
+    source <(devcontainerx completion bash)
+    alias dc=devcontainerx
+    complete -F __start_devcontainerx dc
 
-    alias dco="devcontainer open-in-code ."
-    alias dce="devcontainer exec bash"
+    alias dco="devcontainerx open-in-code ."
+    alias dce="devcontainerx exec bash"
 fi
 
 if [[ $(command -v azbrowse > /dev/null; echo $?) == 0 ]]; then

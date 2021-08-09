@@ -4,7 +4,7 @@ set -e
 dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 # Get the latest run for the current branch *update to use JSON output once implemented - see below)
-run_id=$(gh run list | grep $(git rev-parse --abbrev-ref HEAD) | cut -d$'\t' -f 8 | head -n 1)
+run_id=$(gh run list | grep $(git rev-parse --abbrev-ref HEAD) | cut -d$'\t' -f 7 | head -n 1)
 
 # Watch the run progress
 gh run watch $run_id

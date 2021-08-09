@@ -9,8 +9,13 @@ wcode-insiders() { cmd.exe /C code-insiders ''$(wslpath -w $1)''; }
 wt(){ powershell.exe -Command "wt.exe $@" ; }
 
 alias gitk=gitk.exe
-alias clip=clip.exe
 alias explorer=explorer.exe
+alias clip=clip.exe
+
+## add clip folder to path to override xsel/xclip with WSL versions!
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+export PATH=$DIR/clip:$PATH
+
 
 if [[ $(command -v npiperelay.exe > /dev/null; echo $?) == 0 ]]; then
     if [[ $(command -v setsid > /dev/null; echo $?) == 0 ]]; then
