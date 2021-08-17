@@ -17,7 +17,7 @@ function set-prompt() { echo -ne '\033]0;' $@ '\a'; }
 if [[ $(command -v devcontainerx > /dev/null; echo $?) == 0 ]]; then
     source <(devcontainerx completion bash)
     alias dc=devcontainerx
-    complete -F __start_devcontainerx dc
+    complete -F __start_devcontainer dc
 
     alias dco="devcontainerx open-in-code ."
     alias dce="devcontainerx exec bash"

@@ -10,6 +10,7 @@ if [[ -n $DEV_CONTAINER ]]; then
     ## add toast folder to path to make notify-send/toast scripts available!
     DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
     export PATH=$DIR/toast:$PATH
+    export TOAST=toast
 fi
 
 export AZBROWSE_SETTINGS_PATH="$DOTFILES_FOLDER/devcontainer/.azbrowse-settings.json"
