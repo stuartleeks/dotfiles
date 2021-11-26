@@ -45,4 +45,12 @@ if [[ $(command -v azbrowse > /dev/null; echo $?) == 1 ]]; then
     rm azbrowse_linux_amd64.tar.gz
 fi
 
+
+if [[ ! -f ~/z/z.sh ]]; then
+    echo "Installing z"
+    git clone https://github.com/stuartleeks/z ~/z
+fi
+
 echo "Done"
+
+

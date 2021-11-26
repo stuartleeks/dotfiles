@@ -69,3 +69,16 @@ fi
 alias wait-for-network="$DIR/wait-for-network.sh"
 
 alias wait-for-azdo-build="$DIR/wait-for-azdo-build.sh"
+
+
+if [[ -f ~/z/z.sh ]]; then
+    if [[ -z $DEV_CONTAINER ]]; then
+        # In a dev container we often override the HISTFILE location
+        # to preserve history across dev container instances
+        # If that's the case then piggy-back the Z_DATA on it :-)
+        if [[ -n $HISTFILE ]]; then
+            export Z_DATA="$(dirname $HISTFILE)/.z"
+        fi
+    fi
+    source ~/z/z.sh
+fi
