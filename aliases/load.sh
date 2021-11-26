@@ -14,13 +14,21 @@ reset-vscode-extensions() { rm ~/.vscode-server/data/Machine/.installExtensionsM
 
 function set-prompt() { echo -ne '\033]0;' $@ '\a'; }
 
-if [[ $(command -v devcontainerx > /dev/null; echo $?) == 0 ]]; then
-    source <(devcontainerx completion bash)
-    alias dc=devcontainerx
+# if [[ $(command -v devcontainerx > /dev/null; echo $?) == 0 ]]; then
+if [[ -x ~/.local/binx/devcontainer ]]; then
+    alias dc=~/.local/binx/devcontainer
+    source <(dc completion bash)
     complete -F __start_devcontainer dc
 
-    alias dco="devcontainerx open-in-code ."
-    alias dce="devcontainerx exec bash"
+    alias devcontainerx=~/.local/binx/devcontainer
+    source <(devcontainerx completion bash)
+    complete -F __start_devcontainer devcontainerx
+
+    alias dce="dc exec bash"
+fi
+
+if [[ $(command -v devcontainer > /dev/null; echo $?) == 0 ]]; then
+    alias dco="devcontainer open"
 fi
 
 if [[ $(command -v azbrowse > /dev/null; echo $?) == 0 ]]; then
@@ -56,3 +64,8 @@ if [[ $(command -v gh > /dev/null; echo $?) == 0 ]]; then
     # alias ghrun="gh run list | grep \$(git rev-parse --abbrev-ref HEAD) | cut -d$'\t' -f 8 | xargs gh run watch && notify-send 'Run finished'"
     alias ghrun="$DIR/ghrun.sh"
 fi
+
+
+alias wait-for-network="$DIR/wait-for-network.sh"
+
+alias wait-for-azdo-build="$DIR/wait-for-azdo-build.sh"
