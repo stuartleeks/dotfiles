@@ -50,7 +50,7 @@ done
 
 result=$(az pipelines runs show --id 1164  -o tsv --query result)
 title="Build completed: ${result}"
-run_url="https://dev.azure.com/pubsecsolutions/Government/_build/results?buildId=${build_id}&view=results"
+run_url="https://dev.azure.com/pubsecsolutions/Government/_build/results?buildId=${build_id}"
 
 if [[ -z "$TOAST" ]]; then
     TOAST=toast.exe
