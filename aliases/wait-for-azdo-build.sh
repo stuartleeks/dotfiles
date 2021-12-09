@@ -42,13 +42,13 @@ fi
 status="uknown"
 while true
 do
-  status=$(az pipelines runs show --id 1164  -o tsv --query status)
+  status=$(az pipelines runs show --id $build_id  -o tsv --query status)
   [[ $status == "completed" ]] && break
   echo "Waiting (status=${status})..."
   sleep 5s
 done
 
-result=$(az pipelines runs show --id 1164  -o tsv --query result)
+result=$(az pipelines runs show --id $build_id  -o tsv --query result)
 title="Build completed: ${result}"
 run_url="https://dev.azure.com/pubsecsolutions/Government/_build/results?buildId=${build_id}"
 
