@@ -52,3 +52,13 @@ if ( (get-command -name docker -ErrorAction SilentlyContinue) -eq $null){
 }
 
 
+if (Test-Path "${env:USERPROFILE}\AppData\Local\Packages\Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe\LocalState\settings.json") {
+	Write-Host "Terminal Preview already installed"
+} else {
+    Write-Host "Installing Terminal Preview"
+	winget install Microsoft.WindowsTerminal.Preview
+	Move-Item "${env:USERPROFILE}\AppData\Local\Packages\Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe\LocalState\settings.json" "${env:USERPROFILE}\AppData\Local\Packages\Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe\LocalState\settings-orig.json"
+	New-Item -ItemType SymbolicLink -Path "${env:USERPROFILE}\AppData\Local\Packages\Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe\LocalState\settings.json" -Target "$PSScriptRoot\.config\windows-terminal\settings.json"
+}
+
+
