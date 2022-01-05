@@ -1,0 +1,25 @@
+[core]
+	editor = code --wait
+[diff]
+    tool = default-difftool
+[difftool "default-difftool"]
+    cmd = code --wait --diff $LOCAL $REMOTE
+[alias]
+	amendcommit = "!git commit --amend --reuse-message \"$(git rev-parse --abbrev-ref HEAD)\""
+	branches = branch -a --color -v
+	wip = !git add -A && git commit -qm "WIP"
+	sv = status -vv
+	undo = reset HEAD~1 --mixed
+	pr = "! f() { git fetch upstream pull/$1/head:pr-$1; git checkout pr-$1; }; f" 
+	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+	fl = log -u
+	logtree = log --graph --oneline --decorate --all
+	xwipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+	add-azdo-pr-refs=config --add remote.origin.fetch +refs/pull/*/merge:refs/remotes/origin/pr/*
+	show-remote = "! f() { CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD); REMOTE_BRANCH=$(git for-each-ref --format='%(refname:short):%(upstream:short)' refs/heads | grep $CURRENT_BRANCH: | sed -E 's/.*:(.*)/\\1/'); echo Remote tracking branch for $CURRENT_BRANCH is $REMOTE_BRANCH; }; f"
+	overwrite-local-with-remote = "! f() { echo starting...;CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD); REMOTE_BRANCH=$(git for-each-ref --format='%(refname:short):%(upstream:short)' refs/heads | grep $CURRENT_BRANCH: | sed -E 's/.*:(.*)/\\1/'); echo Checking out $REMOTE_BRANCH;git checkout $REMOTE_BRANCH;echo Checking out as $CURRENT_BRANCH; git checkout -B $CURRENT_BRANCH ;}; f"
+[help]
+	autocorrect = 1
+[merge]
+	conflictstyle = diff3
+

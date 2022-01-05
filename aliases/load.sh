@@ -82,3 +82,5 @@ alias wait-for-azdo-build="$DIR/wait-for-azdo-build.sh"
 #     fi
 #     # source ~/z/z.sh
 # fi
+
+export AZURE_CORE_OUTPUT=jsonc

@@ -1,0 +1,12 @@
+{
+  "experimental": true,
+  "lastupdatecheck": "2022-01-05T15:38:58.2082687Z",
+  "settingpaths": [],
+  "snippetpaths": [
+    "$HOME/utils/sl-devcontainers/snippets",
+    "$HOME/utils/tools-install"
+  ],
+  "templatepaths": [
+    "$HOME/utils/vscode-dev-containers/containers"
+  ]
+}
