@@ -58,7 +58,7 @@ if (Test-Path "${env:USERPROFILE}\AppData\Local\Packages\Microsoft.WindowsTermin
     Write-Host "Installing Terminal Preview"
 	winget install Microsoft.WindowsTerminal.Preview
 	Move-Item "${env:USERPROFILE}\AppData\Local\Packages\Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe\LocalState\settings.json" "${env:USERPROFILE}\AppData\Local\Packages\Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe\LocalState\settings-orig.json"
-	New-Item -ItemType SymbolicLink -Path "${env:USERPROFILE}\AppData\Local\Packages\Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe\LocalState\settings.json" -Target "$PSScriptRoot\.config\windows-terminal\settings.json"
+	New-Item -ItemType SymbolicLink -Path "${env:USERPROFILE}\AppData\Local\Packages\Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe\LocalState\settings.json" -Target "c:\tools\config\windows-terminal\settings.json"
 }
 
 
