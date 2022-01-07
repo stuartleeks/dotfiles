@@ -39,7 +39,7 @@ fi
 
 if [[ $(command -v pip3 > /dev/null; echo $?) == 1 ]]; then
     echo "📦 Installing pip3"
-    sudo apt install python3-pip
+    sudo apt install -y python3-pip
 else
     echo "✅ pip3 already installed"
 fi
