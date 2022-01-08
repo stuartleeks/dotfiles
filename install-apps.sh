@@ -108,13 +108,22 @@ else
 fi
 
 
+if [[ -L Downloads ]]; then
+    echo "✅ Downloads already symlinked"
+else
+    echo "📦 Creating Downloads symlink"
+    win_profile=$(powershell.exe -Command 'Write-Host -NoNewLine ${env:USERPROFILE}')
+    wsl_win_profile=$(wslpath $win_profile)
+    ln -s ${wsl_win_profile}/Downloads/ ~/Downloads
+fi
+
 if [[ -L OneDrive-leeksfamily ]]; then
     echo "✅ OneDrive-leeksfamily already symlinked"
 else
     echo "📦 Creating OneDrive-leeksfamily symlink"
     win_profile=$(powershell.exe -Command 'Write-Host -NoNewLine ${env:USERPROFILE}')
     wsl_win_profile=$(wslpath $win_profile)
-    ln -s ${wsl_win_profile}/OneDrive\ -\ leeksfamily/ OneDrive-leeksfamily
+    ln -s ${wsl_win_profile}/OneDrive\ -\ leeksfamily/ ~/OneDrive-leeksfamily
 fi
 
 if [[ -L OneDrive-Microsoft ]]; then
@@ -123,7 +132,7 @@ else
     echo "📦 Creating OneDrive-Microsoft symlink"
     win_profile=$(powershell.exe -Command 'Write-Host -NoNewLine ${env:USERPROFILE}')
     wsl_win_profile=$(wslpath $win_profile)
-    ln -s ${wsl_win_profile}/OneDrive\ -\ Microsoft/ OneDrive-Microsoft
+    ln -s ${wsl_win_profile}/OneDrive\ -\ Microsoft/ ~/OneDrive-Microsoft
 fi
 
 if [[ -L OneDrive ]]; then
@@ -132,5 +141,5 @@ else
     echo "📦 Creating OneDrive symlink"
     win_profile=$(powershell.exe -Command 'Write-Host -NoNewLine ${env:USERPROFILE}')
     wsl_win_profile=$(wslpath $win_profile)
-    ln -s ${wsl_win_profile}/OneDrive/ OneDrive
+    ln -s ${wsl_win_profile}/OneDrive/ ~/OneDrive
 fi
