@@ -37,6 +37,13 @@ if ( (get-command -name git -ErrorAction SilentlyContinue) -eq $null){
 	Write-Host "git already installed"
 }
 
+if ( (get-command -name gh -ErrorAction SilentlyContinue) -eq $null){
+	Write-Host "Installing GitHub CLI"
+	winget install github.cli
+} else {
+	Write-Host "GitHub CLI already installed"
+}
+
 if ( (get-command -name code -ErrorAction SilentlyContinue) -eq $null){
 	Write-Host "Installing VS Code"
 	winget install vscode
