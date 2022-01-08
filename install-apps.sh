@@ -106,3 +106,31 @@ else
     echo "📦 Creating ~/.gitconfig symlink"
     ln -s "${BASE_DIR}/.config/gitconfig" ~/.gitconfig
 fi
+
+
+if [[ -L OneDrive-leeksfamily ]]; then
+    echo "✅ OneDrive-leeksfamily already symlinked"
+else
+    echo "📦 Creating OneDrive-leeksfamily symlink"
+    win_profile=$(powershell.exe -Command 'Write-Host -NoNewLine ${env:USERPROFILE}')
+    wsl_win_profile=$(wslpath $win_profile)
+    ln -s ${wsl_win_profile}/OneDrive\ -\ leeksfamily/ OneDrive-leeksfamily
+fi
+
+if [[ -L OneDrive-Microsoft ]]; then
+    echo "✅ OneDrive-Microsoft already symlinked"
+else
+    echo "📦 Creating OneDrive-Microsoft symlink"
+    win_profile=$(powershell.exe -Command 'Write-Host -NoNewLine ${env:USERPROFILE}')
+    wsl_win_profile=$(wslpath $win_profile)
+    ln -s ${wsl_win_profile}/OneDrive\ -\ Microsoft/ OneDrive-Microsoft
+fi
+
+if [[ -L OneDrive ]]; then
+    echo "✅ OneDrive already symlinked"
+else
+    echo "📦 Creating OneDrive symlink"
+    win_profile=$(powershell.exe -Command 'Write-Host -NoNewLine ${env:USERPROFILE}')
+    wsl_win_profile=$(wslpath $win_profile)
+    ln -s ${wsl_win_profile}/OneDrive/ OneDrive
+fi
