@@ -56,7 +56,16 @@ if [[ $(command -v batcat > /dev/null; echo $?) == 1 ]]; then
     sudo apt install -y batcat
 fi
 
+if [[ $(command -v diff-so-fancy > /dev/null; echo $?) == 1 ]]; then
+    echo "Installing diff-so-fancy"
+    wget -q -O ~/bin/diff-so-fancy https://github.com/so-fancy/diff-so-fancy/releases/latest/download/diff-so-fancy
+    chmod +x ~/bin/diff-so-fancy
 
+    if [[ $(command -v git > /dev/null; echo $?) == 0 ]]; then
+        echo "Configuring git to use diff-so-fancy"
+        git config --global interactive.diffFilter "diff-so-fancy --patch"
+    fi
+fi
 
 echo "Done"
 
