@@ -83,5 +83,11 @@ alias wait-for-azdo-build="$DIR/wait-for-azdo-build.sh"
 #     # source ~/z/z.sh
 # fi
 
+if [[ $(command -v batcat > /dev/null; echo $?) == 0 ]]; then
+    alias cat=batcat
+fi
+
+
+
 # export AZURE_CORE_OUTPUT=jsonc
 export AZURE_CORE_OUTPUT=table

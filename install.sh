@@ -51,6 +51,13 @@ if [[ ! -f ~/z/z.sh ]]; then
     git clone https://github.com/stuartleeks/z ~/z
 fi
 
+if [[ $(command -v batcat > /dev/null; echo $?) == 1 ]]; then
+    echo "Installing batcat"
+    sudo apt install -y batcat
+fi
+
+
+
 echo "Done"
 
 
