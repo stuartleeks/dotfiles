@@ -56,6 +56,11 @@ if [[ $(command -v batcat > /dev/null; echo $?) == 1 ]]; then
     sudo apt install -y batcat
 fi
 
+if [[ $(command -v jq > /dev/null; echo $?) == 1 ]]; then
+    echo "Installing jq"
+    sudo apt install -y jq
+fi
+
 if [[ $(command -v diff-so-fancy > /dev/null; echo $?) == 1 ]]; then
     echo "Installing diff-so-fancy"
     wget -q -O ~/bin/diff-so-fancy https://github.com/so-fancy/diff-so-fancy/releases/latest/download/diff-so-fancy
@@ -65,6 +70,11 @@ if [[ $(command -v diff-so-fancy > /dev/null; echo $?) == 1 ]]; then
         echo "Configuring git to use diff-so-fancy"
         git config --global interactive.diffFilter "diff-so-fancy --patch"
     fi
+fi
+
+
+if [[ -n $WSL_DISTRO_NAME ]]; then
+    "$BASE_DIR/wsl/install.sh"
 fi
 
 echo "Done"
