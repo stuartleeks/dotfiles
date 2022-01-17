@@ -108,7 +108,7 @@ else
 fi
 
 
-if [[ -L Downloads ]]; then
+if [[ -L ~/Downloads ]]; then
     echo "✅ Downloads already symlinked"
 else
     echo "📦 Creating Downloads symlink"
@@ -117,7 +117,7 @@ else
     ln -s ${wsl_win_profile}/Downloads/ ~/Downloads
 fi
 
-if [[ -L OneDrive-leeksfamily ]]; then
+if [[ -L ~/OneDrive-leeksfamily ]]; then
     echo "✅ OneDrive-leeksfamily already symlinked"
 else
     echo "📦 Creating OneDrive-leeksfamily symlink"
@@ -126,7 +126,7 @@ else
     ln -s ${wsl_win_profile}/OneDrive\ -\ leeksfamily/ ~/OneDrive-leeksfamily
 fi
 
-if [[ -L OneDrive-Microsoft ]]; then
+if [[ -L ~/OneDrive-Microsoft ]]; then
     echo "✅ OneDrive-Microsoft already symlinked"
 else
     echo "📦 Creating OneDrive-Microsoft symlink"
@@ -135,7 +135,7 @@ else
     ln -s ${wsl_win_profile}/OneDrive\ -\ Microsoft/ ~/OneDrive-Microsoft
 fi
 
-if [[ -L OneDrive ]]; then
+if [[ -L ~/OneDrive ]]; then
     echo "✅ OneDrive already symlinked"
 else
     echo "📦 Creating OneDrive symlink"
