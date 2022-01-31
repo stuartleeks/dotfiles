@@ -10,7 +10,7 @@ function show_usage() {
     echo
     echo "Display the latest workflow execution for a PR - notifies on completion"
     echo
-    echo -e "\t--workflow\t(Optional)The name of the workflow to query for."
+    echo -e "\t--workflow, -w\t(Optional)The name of the workflow to query for."
     echo
     echo "Use 'git config stuartleeks.ghrun.workflow workflow_name' to set the default workflow for a git repo"
     echo
@@ -23,9 +23,13 @@ workflow_name=
 while [[ $# -gt 0 ]]
 do
     case "$1" in
-        --workflow)
+        -w|--workflow)
             workflow_name=$2
             shift 2
+            ;;
+        -h|--help)
+            show_usage
+            exit 0
             ;;
         *)
             echo "Unexpected '$1'"
