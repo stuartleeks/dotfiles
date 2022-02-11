@@ -63,6 +63,7 @@ if [[ $(command -v gh > /dev/null; echo $?) == 0 ]]; then
     # Original ghrun alias
     # alias ghrun="gh run list | grep \$(git rev-parse --abbrev-ref HEAD) | cut -d$'\t' -f 8 | xargs gh run watch && notify-send 'Run finished'"
     alias ghrun="$DIR/ghrun.sh"
+    alias ghrelabel="$DIR/ghrelabel.sh"
 fi
 
 
