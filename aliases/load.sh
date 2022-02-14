@@ -88,6 +88,7 @@ if [[ $(command -v batcat > /dev/null; echo $?) == 0 ]]; then
     alias cat=batcat
 fi
 
+alias printenvs="printenv | sort"
 
 
 # export AZURE_CORE_OUTPUT=jsonc
