@@ -93,3 +93,8 @@ alias printenvs="printenv | sort"
 
 # export AZURE_CORE_OUTPUT=jsonc
 export AZURE_CORE_OUTPUT=table
+
+
+if [[ -z $DEV_CONTAINER ]]; then
+    export AZBROWSE_SETTINGS_PATH="$DOTFILES_FOLDER/.config/.azbrowse-settings.json"
+fi

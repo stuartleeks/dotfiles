@@ -1,0 +1,30 @@
+{
+  "keyBindings": {
+    "ListBackLegacy": "F9",
+    "Help": "?",
+    "ListUp": [
+      "k",
+      "Up"
+    ],
+    "ListSort":"ctrl+z",
+    "ListDown": [
+      "j",
+      "Down"
+    ]
+  },
+  "editor": {
+    "command": {
+      "executable": "code",
+      "args": [
+        "--wait"
+      ]
+    },
+    "revertToStandardBuffer": false
+  },
+  "xeditor": {
+    "command": {
+      "executable" : "nano"
+    },
+    "revertToStandardBuffer" : true
+  }
+}
