@@ -9,7 +9,6 @@ wcode-insiders() { cmd.exe /C code-insiders ''$(wslpath -w $1)''; }
 wt(){ powershell.exe -Command "wt.exe $@" ; }
 
 alias gitk=gitk.exe
-alias explorer=explorer.exe
 alias clip=clip.exe
 
 ## add clip folder to path to override xsel/xclip with WSL versions!
@@ -87,4 +86,11 @@ if [[ -z $DEV_CONTAINER ]]; then
     if [[ $(command -v wsl-notify-send.exe > /dev/null; echo $?) == 0 ]]; then 
         notify-send() { /mnt/c/tools/wsl-notify-send.exe --category "$WSL_DISTRO_NAME" "$@"; }
     fi
+fi
+
+
+if [[ -z $DEV_CONTAINER ]]; then
+    explorer() {
+        explorer.exe "$(wslpath -w "$1")"
+    }
 fi
