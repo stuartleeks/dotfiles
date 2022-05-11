@@ -17,6 +17,10 @@ if (command -v go > /dev/null); then
     source "$DOTFILES_FOLDER/go/load.sh"
 fi
 
+if (command -v git > /dev/null); then
+    source "$DOTFILES_FOLDER/git/load.sh"
+fi
+
 if [[ -n $DEV_CONTAINER ]]; then
     source "$DOTFILES_FOLDER/devcontainer/load.sh"
 fi

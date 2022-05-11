@@ -13,10 +13,6 @@ sudo bash "$BASE_DIR/bash-completion/install.sh"
 
 bash "$BASE_DIR/bash-git-prompt/install.sh"
 
-# TODO - mostly want to set git-aliases in codespaces
-# Don't want to set on install as it breaks gitconfig integration in devcontainers
-# bash "$BASE_DIR/git-aliases.sh"
-
 if grep -q DOTFILES_FOLDER ~/.bashrc; then
     echo "dotfiles loader already in .bashrc - skipping"
 else

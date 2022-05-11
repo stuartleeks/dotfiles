@@ -115,15 +115,6 @@ else
     git clone https://github.com/stuartleeks/devcontainers ~/utils/sl-devcontainers
 fi
 
-
-if [[ -L ~/.gitconfig ]]; then
-    echo "✅ ~/.gitconfig already symlinked"
-else
-    echo "📦 Creating ~/.gitconfig symlink"
-    ln -s "${BASE_DIR}/.config/gitconfig" ~/.gitconfig
-fi
-
-
 if [[ -L ~/Downloads ]]; then
     echo "✅ Downloads already symlinked"
 else
