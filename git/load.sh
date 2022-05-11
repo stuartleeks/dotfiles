@@ -4,6 +4,9 @@ script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 # set up global gitignore
 git config --global core.excludesfile "${script_dir}/../.config/gitignore-global"
 
+# setup git hooks
+git config --global core.hooksPath "${script_dir}/hooks"
+
 # Set up gitconfig
 # Adding via commands here rather than symlinking a .gitconfig file
 # as symlinking breaks the git auth forwarding with a dev container
