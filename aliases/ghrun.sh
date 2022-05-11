@@ -56,7 +56,13 @@ if [[ -n $workflow_name ]]; then
 fi
 
 # Get the latest run for the current branch *update to use JSON output once implemented - see below)
-run_id=$(echo "$workflow_arg" | xargs gh run list | grep $(git rev-parse --abbrev-ref HEAD) | cut -d$'\t' -f 7 | head -n 1)
+current_branch=$(git rev-parse --abbrev-ref HEAD)
+gh_run_list=$(echo "$workflow_arg" | xargs gh run list)
+run_id=$(echo "$workflow_arg" | xargs gh run list | grep ${current_branch} | cut -d$'\t' -f 7 | head -n 1)
+
+echo "run_id: $run_id"
+
+
 
 # Watch the run progress
 gh run watch $run_id
