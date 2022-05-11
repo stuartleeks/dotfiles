@@ -16,7 +16,7 @@ function set-prompt() { echo -ne '\033]0;' $@ '\a'; }
 
 # if [[ $(command -v devcontainerx > /dev/null; echo $?) == 0 ]]; then
 if [[ -x ~/.local/binx/devcontainer ]]; then
-    alias dc=~/.local/binx/devcontainer
+    alias dc=$HOME/.local/binx/devcontainer
     source <(dc completion bash)
     complete -F __start_devcontainer dc
 
