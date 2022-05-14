@@ -73,6 +73,10 @@ if [[ -n $WSL_DISTRO_NAME ]]; then
     "$BASE_DIR/wsl/install.sh"
 fi
 
+# TODO - add an upgrade flag
+# upgrading git (need to check if apt-repository already added or not):
+# add-apt-repository ppa:git-core/ppa # apt update; apt install git
+
 echo "Done"
 
 

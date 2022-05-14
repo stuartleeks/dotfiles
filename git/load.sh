@@ -7,6 +7,9 @@ git config --global core.excludesfile "${script_dir}/../.config/gitignore-global
 # setup git hooks
 git config --global core.hooksPath "${script_dir}/hooks"
 
+# default to 'main' as main branch in new repo
+git config --global init.defaultBranch main
+
 # Set up gitconfig
 # Adding via commands here rather than symlinking a .gitconfig file
 # as symlinking breaks the git auth forwarding with a dev container
