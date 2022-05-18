@@ -22,20 +22,51 @@ url="$2"
 
 z40=0000000000000000000000000000000000000000
 
-branch_origin="origin/main" # TODO - look at deriving this (or at least adding a git config option to control)
 
-# Based on the sample hook, prevent push of commits where the log message starts
-# with "WIP" (work in progress).
+# Setting the branch_origin (used as the default range starting point for new branches):
+#  - to set for a specific branch in the repo, set `stuartleeks.githook.pre-push.origin.<branch_name>`
+#  - to set default for a repo, set `stuartleeks.githook.pre-push.origin.`
+#  - to set the global default, set the global config `stuartleeks.githook.pre-push.origin`
+
+
 while read local_ref local_sha remote_ref remote_sha
 do
 	echo "--local_ref:$local_ref"
 	echo "--remote_ref:$remote_ref"
+
+
+	current_branch=$(echo $local_ref | sed -E -r "s/^refs\/heads\/(.*)/\1/")
+	if [[ "$current_branch" == "$local_ref" ]]; then
+		echo "Failed to extract branch name from ref: $local_ref"
+		exit 2
+	fi
+
+	if [[ "0" == $(git config --get stuartleeks.githook.pre-push.origin.$current_branch > /dev/null; echo $?) ]]; then
+		# Is there branch-specific config?
+		branch_origin=$(git config --get stuartleeks.githook.pre-push.origin.$current_branch) # Use the value of stuartleeks.githook.pre-push.origin.$current_branch if it exists
+		echo "Using '$branch_origin' as origin branch (From config: stuartleeks.githook.pre-push.origin.$current_branch)"
+	elif [[ "0" == $(git config --get stuartleeks.githook.pre-push.origin > /dev/null; echo $?) ]]; then
+		# Is there non-branch specific config (either in the local repo or globally)?
+		branch_origin=$(git config --get stuartleeks.githook.pre-push.origin) # Use the value of stuartleeks.githook.pre-push.origin if it exists
+		echo "Using '$branch_origin' as origin branch (From config: stuartleeks.githook.pre-push.origin)"
+	else
+		# Set a default - use 'main' if branch exists, else 'master'
+		got_main=$(git branches --format='%(refname)' | grep -s '^refs/heads/main' > /dev/null; echo $?)
+		if [[ "0" == "$got_main" ]]; then
+			branch_origin="origin/main"
+		else
+			branch_origin="origin/master"
+		fi
+		echo "Using '$branch_origin' as origin branch as no config found"
+	fi
+
+	# Based on the sample hook, prevent push of commits where the log message starts
+	# with "WIP" (work in progress).
 	if [ "$local_sha" = $z40 ]
 	then
 		# Handle delete
 		:
 	else
-		echo "** $local_sha $remote_sha"
 		if [ "$remote_sha" = $z40 ]
 		then
 			# New branch, examine all commits
@@ -54,14 +85,15 @@ do
 			exit 1
 		fi
 	fi
-done
 
-sl_todo_string="SL""TODO" # build as variable to avoid VS Code highlighting literal string ;-)
-sl_todos=$(git diff $branch_origin..HEAD | grep "$sl_todo_string")
-if [[ -n $sl_todos ]]; then
-	echo >&2 "** Found $sl_todo_string in the commit message, not pushing **"
-	echo >&2 "$sl_todo_string: $sl_todos"
-	exit 1
-fi
+	# Prevent push of content with marker TODO comment
+	sl_todo_string="SL""TODO" # build as variable to avoid VS Code highlighting literal string ;-)
+	sl_todos=$(git diff $branch_origin..HEAD | grep "$sl_todo_string")
+	if [[ -n $sl_todos ]]; then
+		echo >&2 "** Found $sl_todo_string in the commit message, not pushing **"
+		echo >&2 "$sl_todo_string: $sl_todos"
+		exit 1
+	fi
+done
 
 exit 0
