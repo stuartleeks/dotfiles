@@ -34,13 +34,16 @@ do
 	echo "--local_ref:$local_ref"
 	echo "--remote_ref:$remote_ref"
 
-
-	current_branch=$(echo $local_ref | sed -E -r "s/^refs\/heads\/(.*)/\1/")
-	if [[ "$current_branch" == "$local_ref" ]]; then
-		echo "Failed to extract branch name from ref: $local_ref"
-		exit 2
+	if [[ "$local_ref" == "HEAD" ]]; then
+		current_branch=$(git rev-parse --abbrev-ref HEAD)
+	else
+		current_branch=$(echo $local_ref | sed -E -r "s/^refs\/heads\/(.*)/\1/")
+		if [[ "$current_branch" == "$local_ref" ]]; then
+			echo "Failed to extract branch name from ref: $local_ref"
+			exit 2
+		fi
 	fi
-
+	
 	if [[ "0" == $(git config --get stuartleeks.githook.pre-push.origin.$current_branch > /dev/null; echo $?) ]]; then
 		# Is there branch-specific config?
 		branch_origin=$(git config --get stuartleeks.githook.pre-push.origin.$current_branch) # Use the value of stuartleeks.githook.pre-push.origin.$current_branch if it exists
