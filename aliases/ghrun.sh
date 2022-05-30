@@ -75,14 +75,16 @@ function finish {
 }
 trap finish EXIT
 
-# Use fake browser to capture run url
-exit_code=$(BROWSER="$dir/save-args.sh \"$temp_filename\"" gh run view $run_id --web --exit-status > /dev/null; echo $?)
-run_url=$(cat "$temp_filename" | head -n 1)
+# # Use fake browser to capture run url
+# exit_code=$(BROWSER="$dir/save-args.sh \"$temp_filename\"" gh run view $run_id --web --exit-status > /dev/null; echo $?)
+# run_url=$(cat "$temp_filename" | head -n 1)
 
-if [[ $exit_code == "0" ]]; then
+status=$(gh run view $run_id --json conclusion --jq .conclusion)
+
+if [[ $status == "success" ]]; then
     title="Run completed successfully"
 else
-    title="Run completed with exit code $exit_code"
+    title="Run completed with conclusion '$status'"
 fi
 
 if [[ -z "$TOAST" ]]; then
