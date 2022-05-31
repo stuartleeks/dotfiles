@@ -62,6 +62,8 @@ if [[ $(command -v thefuck > /dev/null; echo $?) == 1 ]]; then
     pip3 install thefuck
     mv ~/.config/thefuck/settings.py ~/.config/thefuck/settings-orig.py
     ln -s "${BASE_DIR}/.config/thefuck/settings.py" ~/.config/thefuck/settings.py
+    mv ~/.config/thefuck/rules ~/.config/thefuck/rules-orig
+    ln -s "${BASE_DIR}/.config/thefuck/rules" ~/.config/thefuck/rules
 else
     echo "✅ thefuck already installed"
 fi
