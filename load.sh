@@ -28,3 +28,5 @@ fi
 if [[ -z $DEV_CONTAINER ]];then
     TZ='Europe/London'; export TZ
 fi
+
+source "$DOTFILES_FOLDER/tre/load.sh"
