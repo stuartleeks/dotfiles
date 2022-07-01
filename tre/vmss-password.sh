@@ -35,7 +35,7 @@ do
 done
 
 if [[ -z "$ref_id" ]]; then
-  echo "Looking up KeyVault name from Terraform output..."
+  echo "Looking up KeyVault name from Terraform output..." >&2
   kv_name=$(cat templates/core/tre_output.json | jq -r ".keyvault_name.value")
 else
   # Set kv_name
