@@ -78,10 +78,10 @@ if [[ -n $DEV_CONTAINER ]]; then
             if [[ -f ~/.config/thefuck/settings.py ]]; then
                 mv ~/.config/thefuck/settings.py ~/.config/thefuck/settings-orig.py
             fi
-            if [[ -f ~/.config/thefuck/rule ]]; then
+            if [[ -f ~/.config/thefuck/rules ]]; then
                 mv ~/.config/thefuck/rules ~/.config/thefuck/rules-orig
             fi
-            mkdir -p ~/.config/thefuck/rules
+            mkdir -p ~/.config/thefuck
             ln -s "${BASE_DIR}/.config/thefuck/settings.py" ~/.config/thefuck/settings.py
             ln -s "${BASE_DIR}/.config/thefuck/rules" ~/.config/thefuck/rules
         else
