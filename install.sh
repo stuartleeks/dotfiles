@@ -9,6 +9,8 @@
 BASE_DIR=$(dirname "$0")
 BASE_DIR=$(cd $BASE_DIR; pwd)
 
+echo "dotfiles/install.sh - starting... (DEV_CONTAINER=$DEV_CONTAINER)"
+
 sudo bash "$BASE_DIR/bash-completion/install.sh"
 
 bash "$BASE_DIR/bash-git-prompt/install.sh"
@@ -70,7 +72,7 @@ fi
 
 if [[ -n $DEV_CONTAINER ]]; then
     if [[ $(command -v thefuck > /dev/null; echo $?) == 1 ]]; then
-        if [[ $(command -v pip > /dev/null; echo $?) == 1 ]]; then
+        if [[ $(command -v pip > /dev/null; echo $?) == 0 ]]; then
             echo "Installing thefuck"
             pip install thefuck
             mv ~/.config/thefuck/settings.py ~/.config/thefuck/settings-orig.py
@@ -91,6 +93,4 @@ fi
 # upgrading git (need to check if apt-repository already added or not):
 # add-apt-repository ppa:git-core/ppa # apt update; apt install git
 
-echo "Done"
-
-
+echo "dotfiles/install.sh - done."
