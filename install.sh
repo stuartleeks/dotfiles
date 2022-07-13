@@ -75,9 +75,14 @@ if [[ -n $DEV_CONTAINER ]]; then
         if [[ $(command -v pip > /dev/null; echo $?) == 0 ]]; then
             echo "Installing thefuck"
             pip install thefuck
-            mv ~/.config/thefuck/settings.py ~/.config/thefuck/settings-orig.py
+            if [[ -f ~/.config/thefuck/settings.py ]]; then
+                mv ~/.config/thefuck/settings.py ~/.config/thefuck/settings-orig.py
+            fi
+            if [[ -f ~/.config/thefuck/rule ]]; then
+                mv ~/.config/thefuck/rules ~/.config/thefuck/rules-orig
+            fi
+            mkdir -p ~/.config/thefuck/rules
             ln -s "${BASE_DIR}/.config/thefuck/settings.py" ~/.config/thefuck/settings.py
-            mv ~/.config/thefuck/rules ~/.config/thefuck/rules-orig
             ln -s "${BASE_DIR}/.config/thefuck/rules" ~/.config/thefuck/rules
         else
             echo "thefuck not installed (pip not found)"
