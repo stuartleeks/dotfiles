@@ -98,3 +98,6 @@ export AZURE_CORE_OUTPUT=table
 if [[ -z $DEV_CONTAINER ]]; then
     export AZBROWSE_SETTINGS_PATH="$DOTFILES_FOLDER/.config/.azbrowse-settings.json"
 fi
+
+
+source $DIR/jwt.sh
