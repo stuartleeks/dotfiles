@@ -13,16 +13,40 @@ decode_base64_url() {
 }
 
 decode_jose(){
-   decode_base64_url $(echo -n $2 | cut -d "." -f $1) | jq .
+   input=$2
+   if [[ -z "$input" ]]; then
+      if test ! -t 0; then
+         # stdin is not a terminal, assume input is piped
+         echo "Reading input from stdin..." >&2
+         input=$(cat -)
+      fi
+   fi
+   decode_base64_url $(echo -n $input | cut -d "." -f $1) | jq .
 }
 
 decode_jwt_part(){
-   decode_jose $1 $2 | jq 'if .iat then (.iatStr = (.iat|todate)) else . end | if .exp then (.expStr = (.exp|todate)) else . end | if .nbf then (.nbfStr = (.nbf|todate)) else . end'
+   input=$2
+   if [[ -z "$input" ]]; then
+      if test ! -t 0; then
+         # stdin is not a terminal, assume input is piped
+         echo "Reading input from stdin..." >&2
+         input=$(cat -)
+      fi
+   fi
+   decode_jose $1 $input | jq 'if .iat then (.iatStr = (.iat|todate)) else . end | if .exp then (.expStr = (.exp|todate)) else . end | if .nbf then (.nbfStr = (.nbf|todate)) else . end'
 }
 
 decode_jwt(){
-   decode_jwt_part 1 $1
-   decode_jwt_part 2 $1
+   input=$1
+   if [[ -z "$input" ]]; then
+      if test ! -t 0; then
+         # stdin is not a terminal, assume input is piped
+         echo "Reading input from stdin..." >&2
+         input=$(cat -)
+      fi
+   fi
+   decode_jwt_part 1 $input
+   decode_jwt_part 2 $input
 }
 
 # Decode JWT header
