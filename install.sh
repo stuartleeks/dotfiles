@@ -31,6 +31,9 @@ fi
 if [[ $(command -v socat > /dev/null; echo $?) == 1 ]]; then
     echo "Installing socat"
     sudo apt update && sudo apt install -y socat
+    # Not installing socat as it is used in scripts within the dotfiles repo
+    # Could consider allowing aliases in those scripts to avoid the warnings with the wrapper?
+    # $BASE_DIR/devcontainer/install-wrapper.sh --tool-command jq
 fi
 
 if [[ $(command -v azbrowse > /dev/null; echo $?) == 1 ]]; then
@@ -41,6 +44,7 @@ if [[ $(command -v azbrowse > /dev/null; echo $?) == 1 ]]; then
     tar -C ~/bin -zxvf azbrowse_linux_amd64.tar.gz azbrowse
     chmod +x ~/bin/azbrowse
     rm azbrowse_linux_amd64.tar.gz
+    $BASE_DIR/devcontainer/install-wrapper.sh --tool-command azbrowse
 fi
 
 
@@ -57,6 +61,7 @@ fi
 if [[ $(command -v jq > /dev/null; echo $?) == 1 ]]; then
     echo "Installing jq"
     sudo apt install -y jq
+    $BASE_DIR/devcontainer/install-wrapper.sh --tool-command jq
 fi
 
 if [[ $(command -v diff-so-fancy > /dev/null; echo $?) == 1 ]]; then
