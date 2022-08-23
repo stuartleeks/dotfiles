@@ -41,7 +41,7 @@ if [[ -z $tool_command ]]; then
 	exit 1
 fi
 
-original_command=$which_command
+original_command=$(which $tool_command)
 if [[ $(command -v $tool_command > /dev/null; echo $?) == 1 ]]; then
 	echo "Tool '$tool_command' not found - ensure installed before installing wrapper"
 	exit 1
@@ -65,11 +65,11 @@ fi
 # Create wrapper script
 cat <<EOF > $script_dir/wrappers/$tool_command
 echo -e "\033[0;30;103m** using $TOOL from dotfiles **\033[0m" >&2
-$tool_command \$@
+$original_command \$@
 EOF
 chmod +x $script_dir/wrappers/$tool_command
 
 # Create alias for import during load
 # Since aliases are ignored in scripts by default, this means that
 # the wrappers are only used in scripts (not when running the tool interactively)
-echo "alias $tool_command='$original_command" >> $script_dir/wrappers/.aliases
+echo "alias $tool_command='$original_command'" >> $script_dir/wrappers/.aliases
