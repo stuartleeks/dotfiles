@@ -52,6 +52,9 @@ if [[ -z DEVCONTAINER ]]; then
 	exit 0
 fi
 
+
+echo "Creating wrapper for '$tool_command' ..."
+
 # Ensure we have a wrappers folder
 if [[ ! -d $script_dir/wrappers ]]; then
 	echo "Creating wrappers folder"
