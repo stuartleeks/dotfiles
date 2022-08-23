@@ -106,7 +106,8 @@ if [[ -n $DEV_CONTAINER ]]; then
 
     if [[ $(command -v dig > /dev/null; echo $?) == 1 ]]; then
         echo "Installing dig"
-        sudo apt install -y dig
+        sudo apt udpate
+        sudo apt install -y dnsutils
         $BASE_DIR/devcontainer/install-wrapper.sh --tool-command dig
     fi
 fi
