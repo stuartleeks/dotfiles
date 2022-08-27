@@ -64,6 +64,7 @@ fi
 
 # Create wrapper script
 cat <<EOF > $script_dir/wrappers/$tool_command
+#!/bin/bash
 echo -e "\033[0;30;103m** using $tool_command from dotfiles **\033[0m" >&2
 $original_command \$@
 EOF
