@@ -51,7 +51,7 @@ else
 fi
 
 if [[ $(command -v tldr > /dev/null; echo $?) == 1 ]]; then
-    echo "📦 Installing pip3"
+    echo "📦 Installing tldr"
     sudo npm install -g tldr
 else
     echo "✅ tldr already installed"
