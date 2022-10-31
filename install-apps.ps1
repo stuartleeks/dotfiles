@@ -1,13 +1,12 @@
-# Pre-reqs
+﻿# Pre-reqs
 #
-# - leeksfamily OneDrive syncing
 # - wsl installed
 
 if (Test-Path "$env:ProgramFiles/LINQPad7") {
-	Write-Host "LINQPad7 already installed"
+	Write-Host "✅ LINQPad7 already installed"
 }
 else {
-	Write-Host "Installing LINQPad7"
+	Write-Host "👟 Installing LINQPad7"
 	winget install LINQPad7
 	New-Item -ItemType Junction -Target "${env:USERPROFILE}\OneDrive\LinqPad\LINQPad Queries" -Path "$env:ProgramFiles/LINQPad7/queries"
 	New-Item -ItemType Junction -Target "${env:USERPROFILE}\OneDrive\LinqPad\LINQPad Snippets" -Path "$env:ProgramFiles/LINQPad7/snippets"
@@ -78,19 +77,24 @@ else {
 
 if (Test-Path "${env:USERPROFILE}\AppData\Local\Packages\Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe\LocalState\settings.json") {
 	Write-Host "✅ Terminal Preview already installed"
-}
-else {
+} else {
 	Write-Host "👟 Installing Terminal Preview"
 	winget install Microsoft.WindowsTerminal.Preview
 	if (Test-Path "${env:USERPROFILE}\AppData\Local\Packages\Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe\LocalState\settings.json") {
 		Move-Item "${env:USERPROFILE}\AppData\Local\Packages\Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe\LocalState\settings.json" "${env:USERPROFILE}\AppData\Local\Packages\Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe\LocalState\settings-orig.json"
 	}
 }
-if ([bool]((get-item  C:\Users\stuartle\AppData\Local\Packages\Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe\LocalState\settings.json).Attributes -band "ReparsePoint")) {}
-Write-Host "✅ Terminal Preview settings already symlinked"
-else {
+if ([bool]((get-item  C:\Users\stuartle\AppData\Local\Packages\Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe\LocalState\settings.json).Attributes -band "ReparsePoint")) {
+	Write-Host "✅ Terminal Preview settings already symlinked"
+} else {
 	Write-Host "👟 Symlinking Terminal Preview settings"
 	New-Item -ItemType SymbolicLink -Path "${env:USERPROFILE}\AppData\Local\Packages\Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe\LocalState\settings.json" -Target "c:\tools\config\windows-terminal\settings.json"
 }
 
 
+if ($null -eq (get-module -name posh-git -ListAvailable)) {
+	Write-Host "👟 Installing posh-git"
+	Install-Module posh-git -Scope CurrentUser
+} else {
+	Write-Host "✅ posh-git already installed"
+}
