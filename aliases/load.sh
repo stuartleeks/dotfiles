@@ -29,6 +29,7 @@ fi
 
 if [[ $(command -v devcontainer > /dev/null; echo $?) == 0 ]]; then
     alias dco="devcontainer open"
+    alias dcb="devcontainer build"
 fi
 
 if [[ $(command -v azbrowse > /dev/null; echo $?) == 0 ]]; then
