@@ -32,6 +32,11 @@ if [[ $(command -v devcontainer > /dev/null; echo $?) == 0 ]]; then
     alias dcb="devcontainer build"
 fi
 
+if [[ $(command -v devcontainer-insiders > /dev/null; echo $?) == 0 ]]; then
+    alias dco-i="devcontainer-insiders open"
+    alias dcb-i="devcontainer-insiders build"
+fi
+
 if [[ $(command -v azbrowse > /dev/null; echo $?) == 0 ]]; then
     source <(azbrowse completion bash)
     alias azb=azbrowse
@@ -66,7 +71,6 @@ if [[ $(command -v gh > /dev/null; echo $?) == 0 ]]; then
     alias ghrun="$DIR/ghrun.sh"
     alias ghrelabel="$DIR/ghrelabel.sh"
 fi
-
 
 alias wait-for-network="$DIR/wait-for-network.sh"
 

@@ -48,14 +48,14 @@ if [[ $(command -v azbrowse > /dev/null; echo $?) == 1 ]]; then
 fi
 
 
-if [[ ! -f ~/z/z.sh ]]; then
-    echo "Installing z"
-    git clone https://github.com/stuartleeks/z ~/z
-fi
+# if [[ ! -f ~/z/z.sh ]]; then
+#     echo "Installing z"
+#     git clone https://github.com/stuartleeks/z ~/z
+# fi
 
 if [[ $(command -v batcat > /dev/null; echo $?) == 1 ]]; then
     echo "Installing batcat"
-    sudo apt install -y batcat
+    sudo apt install -y bat
 fi
 
 if [[ $(command -v jq > /dev/null; echo $?) == 1 ]]; then
