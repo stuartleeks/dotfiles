@@ -72,6 +72,19 @@ if [[ $(command -v gh > /dev/null; echo $?) == 0 ]]; then
     alias ghrelabel="$DIR/ghrelabel.sh"
 fi
 
+if [[ $(command -v fzf > /dev/null; echo $?) == 0 ]]; then
+    # https://mastodon.social/@elijahmanor/109320029491309392
+    alias gco="git branch --sort=-committerdate | fzf --preview=\"git diff --color=always '{1}'\" --header \"git checkout\" | xargs git checkout"
+    if [[ $(command -v fd > /dev/null; echo $?) == 0 ]]; then
+        alias fdf="fd --type f --hidden --exclude .git"
+        if [[ $(command -v fzf > /dev/null; echo $?) == 0 ]]; then
+            # https://mastodon.social/@elijahmanor/109314401963363668
+            alias catf="fd --type f --hidden --exclude .git | fzf |xargs batcat"
+        fi
+    fi
+fi
+
+
 alias wait-for-network="$DIR/wait-for-network.sh"
 
 alias wait-for-azdo-build="$DIR/wait-for-azdo-build.sh"

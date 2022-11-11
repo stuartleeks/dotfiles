@@ -153,11 +153,3 @@ else
     ln -s ${wsl_win_profile}/OneDrive/ ~/OneDrive
 fi
 
-
-if [[ $(command -v fzf > /dev/null; echo $?) == 1 ]]; then
-    echo "📦 Installing fzf"
-    sudo apt-get install fzf
-else
-    echo "✅ fzf already installed"
-fi
-

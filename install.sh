@@ -116,6 +116,20 @@ if [[ -n $WSL_DISTRO_NAME ]]; then
     "$BASE_DIR/wsl/install.sh"
 fi
 
+if [[ $(command -v fzf > /dev/null; echo $?) == 1 ]]; then
+    echo "📦 Installing fzf"
+    sudo apt-get install fzf
+fi
+if [[ $(command -v fd > /dev/null; echo $?) == 1 ]]; then
+    # https://github.com/sharkdp/fd#installation
+    echo "📦 Installing fd"
+    sudo apt install fd-find
+    mkdir -p ~/.local/bin
+    ln -s $(which fdfind) ~/.local/bin/fd
+fi
+
+
+
 # TODO - add an upgrade flag
 # upgrading git (need to check if apt-repository already added or not):
 # add-apt-repository ppa:git-core/ppa # apt update; apt install git
