@@ -77,6 +77,7 @@ if [[ $(command -v fzf > /dev/null; echo $?) == 0 ]]; then
     alias gco="git branch --sort=-committerdate | fzf --preview=\"git diff --color=always '{1}'\" --header \"git checkout\" | xargs git checkout"
     if [[ $(command -v fd > /dev/null; echo $?) == 0 ]]; then
         alias fdf="fd --type f --hidden --exclude .git"
+        alias fdff="fd --type f --hidden --exclude .git | fzf"
         if [[ $(command -v fzf > /dev/null; echo $?) == 0 ]]; then
             # https://mastodon.social/@elijahmanor/109314401963363668
             alias catf="fd --type f --hidden --exclude .git | fzf |xargs batcat"
