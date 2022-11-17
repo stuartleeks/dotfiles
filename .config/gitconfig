@@ -11,6 +11,7 @@
 	overwrite-local-with-remote = "! f() { echo starting...;CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD); REMOTE_BRANCH=$(git for-each-ref --format=\"%(refname:short):%(upstream:short)\" refs/heads | grep $CURRENT_BRANCH: | sed -E \"s/.*:(.*)/\\\\1/\"); echo Checking out $REMOTE_BRANCH;git checkout $REMOTE_BRANCH;echo Checking out as $CURRENT_BRANCH; git checkout -B $CURRENT_BRANCH ;}; f"
 	pr = "! f() { git fetch upstream pull/$1/head:pr-$1; git checkout pr-$1; }; f"
 	rup = remote update --prune
+	prup = "! f() { git pull && fit remote update --prune }; f"
 	show-remote = "! f() { CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD); REMOTE_BRANCH=$(git for-each-ref --format=\"%(refname:short):%(upstream:short)\" refs/heads | grep $CURRENT_BRANCH: | sed -E \"s/.*:(.*)/\\\\1/\"); echo Remote tracking branch for $CURRENT_BRANCH is $REMOTE_BRANCH; }; f"
 	sv = status -vv
 	undo = reset HEAD~1 --mixed
