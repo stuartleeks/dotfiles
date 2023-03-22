@@ -14,27 +14,21 @@ reset-vscode-extensions() { rm ~/.vscode-server/data/Machine/.installExtensionsM
 
 function set-prompt() { echo -ne '\033]0;' $@ '\a'; }
 
-# if [[ $(command -v devcontainerx > /dev/null; echo $?) == 0 ]]; then
-if [[ -x ~/.local/binx/devcontainer ]]; then
-    alias dc=$HOME/.local/binx/devcontainer
-    source <(dc completion bash)
-    complete -F __start_devcontainer dc
+# if [[ -x ~/.local/bin/devcontainerx ]]; then
+if [[ $(command -v devcontainerx > /dev/null; echo $?) == 0 ]]; then
+    alias dco="devcontainerx open-in-code"
+    alias dce="devcontainerx exec --path . bash"
 
-    alias devcontainerx=~/.local/binx/devcontainer
     source <(devcontainerx completion bash)
-    complete -F __start_devcontainer devcontainerx
 
-    alias dce="dc exec bash"
+    alias dcx=devcontainerx
+    source <(dcx completion bash)
+    complete -F __start_devcontainer dcx
 fi
 
 if [[ $(command -v devcontainer > /dev/null; echo $?) == 0 ]]; then
-    alias dco="devcontainer open"
-    alias dcb="devcontainer build"
-fi
-
-if [[ $(command -v devcontainer-insiders > /dev/null; echo $?) == 0 ]]; then
-    alias dco-i="devcontainer-insiders open"
-    alias dcb-i="devcontainer-insiders build"
+    alias dcb="devcontainer build --workspace-folder \$PWD"
+    # alias dce="devcontainer exec --workspace-folder $PWD bash"
 fi
 
 if [[ $(command -v azbrowse > /dev/null; echo $?) == 0 ]]; then
@@ -72,6 +66,8 @@ if [[ $(command -v gh > /dev/null; echo $?) == 0 ]]; then
     alias ghrelabel="$DIR/ghrelabel.sh"
 fi
 
+alias "gc"="git checkout"
+alias "gc-"="git checkout -"
 if [[ $(command -v fzf > /dev/null; echo $?) == 0 ]]; then
     # https://mastodon.social/@elijahmanor/109320029491309392
     alias gco="git branch --sort=-committerdate | fzf --preview=\"git diff --color=always $(git rev-parse HEAD) '{1}'\" --header \"git checkout\" | xargs git checkout"
