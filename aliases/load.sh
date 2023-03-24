@@ -81,6 +81,9 @@ if [[ $(command -v fzf > /dev/null; echo $?) == 0 ]]; then
     fi
 fi
 
+if [[ $(command -v python3 > /dev/null; echo $?) == 0 ]]; then
+    alias dapr-log-format="$DIR/dapr-log-format.py"
+fi
 
 alias wait-for-network="$DIR/wait-for-network.sh"
 
