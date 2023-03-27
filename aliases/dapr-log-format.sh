@@ -58,7 +58,6 @@ COLOR_YELLOW = "\033[1;33m"
 COLOR_WHITE = "\033[1;37m"
 COLOR_RESET = "\033[0m"
 
-print(f"{COLOR_RED}TEST{COLOR_RESET}")
 # read lines from stdin
 for line in sys.stdin:
 
