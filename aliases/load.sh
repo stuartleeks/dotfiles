@@ -51,6 +51,7 @@ fi
 
 if [[ $(command -v az > /dev/null; echo $?) == 0 ]]; then
     function get-alias() { az ad user list --filter "mail eq '$1'" --query [0].userPrincipalName -o tsv; }
+    alias azlogin="az login --tenant 0a86e783-e82b-4ba0-8564-c79063f8672f"
 fi
 
 if [[ $(command -v thefuck > /dev/null; echo $?) == 0 ]]; then
