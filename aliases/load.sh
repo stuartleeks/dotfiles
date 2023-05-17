@@ -23,7 +23,7 @@ if [[ $(command -v devcontainerx > /dev/null; echo $?) == 0 ]]; then
 
     alias dcx=devcontainerx
     source <(dcx completion bash)
-    complete -F __start_devcontainer dcx
+    complete -F __start_devcontainerx dcx
 fi
 
 if [[ $(command -v devcontainer > /dev/null; echo $?) == 0 ]]; then
