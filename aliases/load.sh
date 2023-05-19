@@ -120,3 +120,5 @@ fi
 
 
 source $DIR/jwt.sh
+
+alias s="$DIR/show.sh"
