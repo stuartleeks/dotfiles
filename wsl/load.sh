@@ -94,3 +94,6 @@ if [[ -z $DEV_CONTAINER ]]; then
         explorer.exe "$(wslpath -w "$1")"
     }
 fi
+
+# disable bell on tab completion!
+bind 'set bell-style none'
