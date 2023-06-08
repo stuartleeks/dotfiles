@@ -10,18 +10,24 @@ function show_usage() {
     echo
 }
 
-if [[ -z $1 ]]; then
+file_or_dir="$1"
+
+if [[ "$file_or_dir" == "-h" || "$file_or_dir" == "--help" ]]; then
 	show_usage
-	exit 1
+	exit 0
 fi
 
-if [[ -d $1 ]]; then
-	ls -al --color=always $1
+if [[ -z "$file_or_dir" ]]; then
+	file_or_dir="."
+fi
+
+if [[ -d "$file_or_dir" ]]; then
+	ls -al --color=always "$file_or_dir"
 else
 	if [[ $(command -v batcat > /dev/null; echo $?) == 0 ]]; then
-		batcat $1
+		batcat "$file_or_dir"
 	else
-		cat $1
+		cat "$file_or_dir"
 	fi
 fi
 
