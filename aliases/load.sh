@@ -67,6 +67,10 @@ if [[ $(command -v gh > /dev/null; echo $?) == 0 ]]; then
     alias ghrelabel="$DIR/ghrelabel.sh"
 fi
 
+# override find commands to avoid `--follow` as most symlinks are Downloads etc on Windows file system
+export FZF_DEFAULT_COMMAND='fd --type f'
+_fzf_compgen_dir() { fd --type d $1; }
+
 alias "gc"="git checkout"
 alias "gc-"="git checkout -"
 if [[ $(command -v fzf > /dev/null; echo $?) == 0 ]]; then
