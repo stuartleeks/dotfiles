@@ -118,7 +118,8 @@ fi
 
 if [[ $(command -v fzf > /dev/null; echo $?) == 1 ]]; then
     echo "📦 Installing fzf"
-    sudo apt-get install fzf
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install
 fi
 if [[ $(command -v fd > /dev/null; echo $?) == 1 ]]; then
     # https://github.com/sharkdp/fd#installation
