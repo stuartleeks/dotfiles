@@ -8,7 +8,6 @@ alias l='ls -CF'
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-
 # helper to reset the marker files to reinstall extensions on reloading the devcontainer
 reset-vscode-extensions() { rm ~/.vscode-server/data/Machine/.installExtensionsMarker; rm ~/.vscode-server/data/Machine/.postCreateCommandMarker; }
 
@@ -56,6 +55,9 @@ fi
 
 if [[ $(command -v thefuck > /dev/null; echo $?) == 0 ]]; then
     eval $(thefuck --alias grr)
+
+    export THE_FUCK_GH_SWITCH_USER_ORGS="commercial-software-engineering|stuartle_microsoft;"
+    export THE_FUCK_GH_SWITCH_USER_DEFAULT_USER="stuartleeks"
 fi
 
 if [[ $(command -v gh > /dev/null; echo $?) == 0 ]]; then
@@ -109,6 +111,8 @@ alias wait-for-azdo-build="$DIR/wait-for-azdo-build.sh"
 
 if [[ $(command -v batcat > /dev/null; echo $?) == 0 ]]; then
     alias cat=batcat
+    alias bat=batcat
+    export BAT_CONFIG_PATH="$DOTFILES_FOLDER/.config/bat/config"
 fi
 
 alias printenvs="printenv | sort"
@@ -126,3 +130,5 @@ fi
 source $DIR/jwt.sh
 
 alias s="$DIR/show.sh"
+
+alias emu="su stuart-emu --login"
