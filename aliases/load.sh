@@ -1,6 +1,7 @@
 alias cls=clear
 alias md=mkdir
 alias cd..="cd .."
+alias "cd-"="cd -"
 
 alias ll='ls -alF'
 alias la='ls -A'
