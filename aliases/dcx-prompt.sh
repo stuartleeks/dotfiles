@@ -2,7 +2,8 @@
 set -e
 export PATH="$PATH:$HOME/.fzf/bin"
 
-dc_name=$(~/.local/bin/devcontainerx list | fzf --preview="~/.local/bin/devcontainerx show --name '{1}'" --header "devcontainer exec") 
+export DEVCONTAINERX_SKIP_UPDATE=1 
+dc_name=$(~/.local/bin/devcontainerx list | fzf --preview="~/.local/bin/devcontainerx show --name '{1}'" --header "devcontainer exec" --bind="ctrl-r:reload(~/.local/bin/devcontainerx list)") 
 
-DEVCONTAINERX_SKIP_UPDATE=1 ~/.local/bin/devcontainerx exec --name "$dc_name"
+~/.local/bin/devcontainerx exec --name "$dc_name"
 
