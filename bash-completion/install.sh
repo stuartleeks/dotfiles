@@ -12,7 +12,7 @@ if ! shopt -oq posix; then
   else
     echo "bash-completion not found. Installing..."
     apt-get update
-    apt-get install bash-completion
-    echo -e "source /usr/share/bash-completion/bash_completion\n" >> ~/.bashrc
+    apt-get install bash-completion -y
+    echo -e "source /usr/share/bash-completion/bash-completion\n" >> ~/.bashrc
   fi
 fi
