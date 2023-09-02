@@ -119,7 +119,7 @@ fi
 if [[ $(command -v fzf > /dev/null; echo $?) == 1 ]]; then
     echo "📦 Installing fzf"
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    ~/.fzf/install
+    ~/.fzf/install --all
 fi
 if [[ $(command -v fd > /dev/null; echo $?) == 1 ]]; then
     # https://github.com/sharkdp/fd#installation
