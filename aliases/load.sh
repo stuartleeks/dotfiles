@@ -78,7 +78,8 @@ alias "gc"="git checkout"
 alias "gc-"="git checkout -"
 if [[ $(command -v fzf > /dev/null; echo $?) == 0 ]]; then
     # https://mastodon.social/@elijahmanor/109320029491309392
-    alias gco="git branch --sort=-committerdate | fzf --bind 'ctrl-a:reload(git branch --all --sort=-committerdate)' --preview=\"git diff --color=always \$(git rev-parse HEAD) '{1}'\" --header \"git checkout\" | xargs git checkout"
+    alias gco="$DIR/gco-fzf.sh"
+    # alias gco="git branch --sort=-committerdate | fzf --bind 'ctrl-a:reload(git branch --all --sort=-committerdate)' --preview=\"git diff --color=always \$(git rev-parse HEAD) '{1}'\" --header \"git checkout\" | xargs git checkout"
     if [[ $(command -v fd > /dev/null; echo $?) == 0 ]]; then
         alias fdf="fd --type f --hidden --exclude .git"
         alias fdff="fd --type f --hidden --exclude .git | fzf"
@@ -87,6 +88,8 @@ if [[ $(command -v fzf > /dev/null; echo $?) == 0 ]]; then
             alias catf="fd --type f --hidden --exclude .git | fzf |xargs batcat"
         fi
     fi
+else
+    alias gco="git checkout"
 fi
 
 if [[ $(command -v python3 > /dev/null; echo $?) == 0 ]]; then
@@ -128,10 +131,8 @@ if [[ -z $DEV_CONTAINER ]]; then
 fi
 
 
-source $DIR/jwt.sh
+source "$DIR/jwt.sh"
 
 alias s="$DIR/show.sh"
-
-alias emu="su stuart-emu --login"
 
 get_lichess_puzzle_rating() { curl -s https://lichess.org/api/user/$1 -H 'Accept: application/json' | jq -r .perfs.puzzle.rating ; }
