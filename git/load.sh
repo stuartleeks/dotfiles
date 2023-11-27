@@ -42,4 +42,4 @@ git config --global --replace-all interactive.diffFilter 'diff-so-fancy --patch'
 
 # Use full repo path as cache key for git credentials
 # See https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-your-personal-account/managing-multiple-accounts
-git config --global --replace-all credential.https://github.com.useHttpPath true
+git config --global --replace-all credential.useHttpPath true
