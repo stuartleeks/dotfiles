@@ -22,7 +22,7 @@ if [[ -z "$file_or_dir" ]]; then
 fi
 
 if [[ -d "$file_or_dir" ]]; then
-	ls -al --color=always "$file_or_dir"
+	ls -alh --color=always "$file_or_dir"
 else
 	if [[ $(command -v batcat > /dev/null; echo $?) == 0 ]]; then
 		batcat "$file_or_dir"
