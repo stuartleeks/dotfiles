@@ -80,12 +80,13 @@ if [[ -n $DEV_CONTAINER ]]; then
         installed=0
         if [[ $(command -v pip > /dev/null; echo $?) == 0 ]]; then
             echo "Installing thefuck (using pip)"
-            pip install thefuck
+            pip install git+https://github.com/nvbn/thefuck # install from source to work around imp removal from 3.12
+
             installed=1
         fi
         if [[ $(command -v pip3 > /dev/null; echo $?) == 0 ]]; then
             echo "Installing thefuck (using pip3)"
-            pip3 install thefuck
+            pip3 install git+https://github.com/nvbn/thefuck # install from source to work around imp removal from 3.12
             installed=1
         fi
         if [[ $installed == 0 ]]; then
