@@ -96,6 +96,10 @@ if [[ $(command -v python3 > /dev/null; echo $?) == 0 ]]; then
     alias dapr-log-format="$DIR/dapr-log-format.py"
 fi
 
+if [[ $(command -v op > /dev/null; echo $?) == 0 ]]; then
+    source <(op completion bash)
+fi
+
 alias wait-for-network="$DIR/wait-for-network.sh"
 
 alias wait-for-azdo-build="$DIR/wait-for-azdo-build.sh"
