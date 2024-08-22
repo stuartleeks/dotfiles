@@ -51,8 +51,8 @@ fi
 
 if [[ $(command -v az > /dev/null; echo $?) == 0 ]]; then
     function get-alias() { az ad user list --filter "mail eq '$1'" --query [0].userPrincipalName -o tsv; }
-    alias azlogin="az login --tenant 0a86e783-e82b-4ba0-8564-c79063f8672f"
-    alias azlogin="az login --tenant 0a86e783-e82b-4ba0-8564-c79063f8672f --use-device-code"
+    alias azlogin_old="az login --tenant 0a86e783-e82b-4ba0-8564-c79063f8672f --use-device-code"
+    alias azlogin_fy25="az login --tenant 43dc75e3-499a-40cd-891a-ba9f8e445365 --use-device-code"
 fi
 
 if [[ $(command -v thefuck > /dev/null; echo $?) == 0 ]]; then
