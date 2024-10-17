@@ -15,19 +15,6 @@ sudo bash "$BASE_DIR/bash-completion/install.sh"
 
 bash "$BASE_DIR/bash-git-prompt/install.sh"
 
-if grep -q DOTFILES_FOLDER ~/.bashrc; then
-    echo "dotfiles loader already in .bashrc - skipping"
-else
-    echo "Adding dotfiles loader to .bashrc..."
-    echo -e "# DOTFILES_START" >> ~/.bashrc
-    echo -e "DOTFILES_FOLDER=\"$BASE_DIR\"" >> ~/.bashrc
-    if [[ -n $DEV_CONTAINER ]]; then
-        echo -e "DEV_CONTAINER=1" >> ~/.bashrc
-    fi
-    echo -e "source \"$BASE_DIR/load.sh\"" >> ~/.bashrc
-    echo -e "# DOTFILES_END\n" >> ~/.bashrc
-fi
-
 if [[ $(command -v socat > /dev/null; echo $?) == 1 ]]; then
     echo "Installing socat"
     sudo apt update && sudo apt install -y socat
@@ -135,5 +122,21 @@ fi
 # TODO - add an upgrade flag
 # upgrading git (need to check if apt-repository already added or not):
 # add-apt-repository ppa:git-core/ppa # apt update; apt install git
+
+
+# NOTE: Add this last so that anything that depends on tools installed above
+# will be able to find them when the dotfiles are loaded
+if grep -q DOTFILES_FOLDER ~/.bashrc; then
+    echo "dotfiles loader already in .bashrc - skipping"
+else
+    echo "Adding dotfiles loader to .bashrc..."
+    echo -e "# DOTFILES_START" >> ~/.bashrc
+    echo -e "DOTFILES_FOLDER=\"$BASE_DIR\"" >> ~/.bashrc
+    if [[ -n $DEV_CONTAINER ]]; then
+        echo -e "DEV_CONTAINER=1" >> ~/.bashrc
+    fi
+    echo -e "source \"$BASE_DIR/load.sh\"" >> ~/.bashrc
+    echo -e "# DOTFILES_END\n" >> ~/.bashrc
+fi
 
 echo "dotfiles/install.sh - done."
