@@ -1,6 +1,12 @@
 #!/bin/bash
 set -e
 
+branch_arg=$1
+if [[ -n "$branch_arg" ]]; then
+    git checkout "$branch_arg"
+    exit
+fi
+
 branch_name=$(git branch --sort=-committerdate \
     | fzf --bind 'ctrl-a:reload(git branch --all --sort=-committerdate)' --preview="git diff --color=always \$(git rev-parse HEAD) '{1}'" --header "git checkout")
 
