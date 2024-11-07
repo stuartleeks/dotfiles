@@ -34,19 +34,25 @@ do
 	echo "--local_ref:$local_ref"
 	echo "--remote_ref:$remote_ref"
 
+
 	if [[ "$local_ref" == "HEAD" ]]; then
 		current_branch=$(git rev-parse --abbrev-ref HEAD)
 	else
-		current_branch=$(echo $local_ref | sed -E -r "s/^refs\/heads\/(.*)/\1/")
+		# try to extra branch name
+		current_branch=$(echo "$local_ref" | sed -E -r "s/^refs\/heads\/(.*)/\1/")
 		if [[ "$current_branch" == "$local_ref" ]]; then
-			echo "Failed to extract branch name from ref: $local_ref"
-			exit 2
+			# try to get tag name
+			current_branch=$(echo "$local_ref" | sed -E -r "s/^refs\/tags\/(.*)/\1/")
+			if [[ "$current_branch" == "$local_ref" ]]; then
+				echo "Failed to extract branch name from ref: $local_ref"
+				exit 2
+			fi
 		fi
 	fi
 	
-	if [[ "0" == $(git config --get stuartleeks.githook.pre-push.origin.$current_branch > /dev/null; echo $?) ]]; then
+	if [[ "0" == $(git config --get "stuartleeks.githook.pre-push.origin.$current_branch" > /dev/null; echo $?) ]]; then
 		# Is there branch-specific config?
-		branch_origin=$(git config --get stuartleeks.githook.pre-push.origin.$current_branch) # Use the value of stuartleeks.githook.pre-push.origin.$current_branch if it exists
+		branch_origin=$(git config --get "stuartleeks.githook.pre-push.origin.$current_branch") # Use the value of stuartleeks.githook.pre-push.origin.$current_branch if it exists
 		echo "Using '$branch_origin' as origin branch (From config: stuartleeks.githook.pre-push.origin.$current_branch)"
 	elif [[ "0" == $(git config --get stuartleeks.githook.pre-push.origin > /dev/null; echo $?) ]]; then
 		# Is there non-branch specific config (either in the local repo or globally)?
@@ -80,18 +86,18 @@ do
 		fi
 
 		# Check for WIP commit
-		commit=`git rev-list -n 1 --grep '^WIP' "$range"`
+		commit=$(git rev-list -n 1 --grep '^WIP' "$range")
 		if [ -n "$commit" ]
 		then
 			echo >&2 "** Found WIP commit in $local_ref, not pushing **"
-			git show -s $commit
+			git show -s "$commit"
 			exit 1
 		fi
 	fi
 
 	# Prevent push of content with marker TODO comment
 	sl_todo_string="SL""TODO" # build as variable to avoid VS Code highlighting literal string ;-)
-	sl_todos=$(git diff $branch_origin..HEAD | grep "$sl_todo_string")
+	sl_todos=$(git diff "$branch_origin..HEAD" | grep "$sl_todo_string")
 	if [[ -n $sl_todos ]]; then
 		echo >&2 "** Found $sl_todo_string in the commit message, not pushing **"
 		echo >&2 "$sl_todo_string: $sl_todos"
