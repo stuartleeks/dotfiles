@@ -12,6 +12,8 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 # helper to reset the marker files to reinstall extensions on reloading the devcontainer
 reset-vscode-extensions() { rm ~/.vscode-server/data/Machine/.installExtensionsMarker; rm ~/.vscode-server/data/Machine/.postCreateCommandMarker; }
 
+function update-dotfiles() { (cd "$DOTFILES_FOLDER" && git pull); }
+
 function set-prompt() { echo -ne '\033]0;' $@ '\a'; }
 
 # if [[ -x ~/.local/bin/devcontainerx ]]; then
