@@ -144,3 +144,6 @@ source "$DIR/jwt.sh"
 alias s="$DIR/show.sh"
 
 get_lichess_puzzle_rating() { curl -s https://lichess.org/api/user/$1 -H 'Accept: application/json' | jq -r .perfs.puzzle.rating ; }
+
+alias get-chars="$DIR/get-chars.sh"
+alias op-chars="$DIR/op-chars.sh"
