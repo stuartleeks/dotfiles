@@ -80,6 +80,8 @@ _fzf_compgen_dir() { fd --type d $1; }
 
 alias "gc"="git checkout"
 alias "gc-"="git checkout -"
+alias "gcb"="git checkout -b"
+
 if [[ $(command -v fzf > /dev/null; echo $?) == 0 ]]; then
     # https://mastodon.social/@elijahmanor/109320029491309392
     alias gco="$DIR/gco-fzf.sh"
