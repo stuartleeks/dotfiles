@@ -66,16 +66,16 @@ else
     echo "✅ tldr already installed"
 fi
 
-if [[ $(command -v thefuck > /dev/null; echo $?) == 1 ]]; then
-    echo "📦 Installing thefuck"
-    pip3 install git+https://github.com/nvbn/thefuck # install from source to work around imp removal from 3.12
-    mv ~/.config/thefuck/settings.py ~/.config/thefuck/settings-orig.py
-    ln -s "${BASE_DIR}/.config/thefuck/settings.py" ~/.config/thefuck/settings.py
-    mv ~/.config/thefuck/rules ~/.config/thefuck/rules-orig
-    ln -s "${BASE_DIR}/.config/thefuck/rules/" ~/.config/thefuck/rules
-else
-    echo "✅ thefuck already installed"
-fi
+# if [[ $(command -v thefuck > /dev/null; echo $?) == 1 ]]; then
+#     echo "📦 Installing thefuck"
+#     pip3 install git+https://github.com/nvbn/thefuck # install from source to work around imp removal from 3.12
+#     mv ~/.config/thefuck/settings.py ~/.config/thefuck/settings-orig.py
+#     ln -s "${BASE_DIR}/.config/thefuck/settings.py" ~/.config/thefuck/settings.py
+#     mv ~/.config/thefuck/rules ~/.config/thefuck/rules-orig
+#     ln -s "${BASE_DIR}/.config/thefuck/rules/" ~/.config/thefuck/rules
+# else
+#     echo "✅ thefuck already installed"
+# fi
 
 
 if [[ $(command -v gh > /dev/null; echo $?) == 1 ]]; then
@@ -142,6 +142,15 @@ else
     win_profile=$(powershell.exe -Command 'Write-Host -NoNewLine ${env:USERPROFILE}')
     wsl_win_profile=$(wslpath $win_profile)
     ln -s ${wsl_win_profile}/OneDrive\ -\ leeksfamily/ ~/OneDrive-leeksfamily
+fi
+
+if [[ -L ~/leeksfamily ]]; then
+    echo "✅ leeksfamily already symlinked"
+else
+    echo "📦 Creating leeksfamily symlink"
+    win_profile=$(powershell.exe -Command 'Write-Host -NoNewLine ${env:USERPROFILE}')
+    wsl_win_profile=$(wslpath $win_profile)
+    ln -s ${wsl_win_profile}/leeksfamily/ ~/leeksfamily
 fi
 
 if [[ -L ~/OneDrive-Microsoft ]]; then

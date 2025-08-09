@@ -58,12 +58,12 @@ if [[ $(command -v az > /dev/null; echo $?) == 0 ]]; then
     alias azlogin_fy25="az login --tenant 43dc75e3-499a-40cd-891a-ba9f8e445365 --use-device-code"
 fi
 
-if [[ $(command -v thefuck > /dev/null; echo $?) == 0 ]]; then
-    eval $(thefuck --alias grr)
+# if [[ $(command -v thefuck > /dev/null; echo $?) == 0 ]]; then
+#     eval $(thefuck --alias grr)
 
-    export THE_FUCK_GH_SWITCH_USER_ORGS="commercial-software-engineering|stuartle_microsoft;"
-    export THE_FUCK_GH_SWITCH_USER_DEFAULT_USER="stuartleeks"
-fi
+#     export THE_FUCK_GH_SWITCH_USER_ORGS="commercial-software-engineering|stuartle_microsoft;"
+#     export THE_FUCK_GH_SWITCH_USER_DEFAULT_USER="stuartleeks"
+# fi
 
 if [[ $(command -v gh > /dev/null; echo $?) == 0 ]]; then
     eval "$(gh completion -s bash)"

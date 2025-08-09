@@ -63,33 +63,33 @@ if [[ $(command -v diff-so-fancy > /dev/null; echo $?) == 1 ]]; then
 fi
 
 if [[ -n $DEV_CONTAINER ]]; then
-    if [[ $(command -v thefuck > /dev/null; echo $?) == 1 ]]; then
-        installed=0
-        if [[ $(command -v pip > /dev/null; echo $?) == 0 ]]; then
-            echo "Installing thefuck (using pip)"
-            pip install git+https://github.com/nvbn/thefuck # install from source to work around imp removal from 3.12
+    # if [[ $(command -v thefuck > /dev/null; echo $?) == 1 ]]; then
+    #     installed=0
+    #     if [[ $(command -v pip > /dev/null; echo $?) == 0 ]]; then
+    #         echo "Installing thefuck (using pip)"
+    #         pip install git+https://github.com/nvbn/thefuck # install from source to work around imp removal from 3.12
 
-            installed=1
-        fi
-        if [[ $(command -v pip3 > /dev/null; echo $?) == 0 ]]; then
-            echo "Installing thefuck (using pip3)"
-            pip3 install git+https://github.com/nvbn/thefuck # install from source to work around imp removal from 3.12
-            installed=1
-        fi
-        if [[ $installed == 0 ]]; then
-            if [[ -f ~/.config/thefuck/settings.py ]]; then
-                mv ~/.config/thefuck/settings.py ~/.config/thefuck/settings-orig.py
-            fi
-            if [[ -f ~/.config/thefuck/rules ]]; then
-                mv ~/.config/thefuck/rules ~/.config/thefuck/rules-orig
-            fi
-            mkdir -p ~/.config/thefuck
-            ln -s "${BASE_DIR}/.config/thefuck/settings.py" ~/.config/thefuck/settings.py
-            ln -s "${BASE_DIR}/.config/thefuck/rules" ~/.config/thefuck/rules
-        else
-            echo "thefuck not installed (pip not found)"
-        fi
-    fi
+    #         installed=1
+    #     fi
+    #     if [[ $(command -v pip3 > /dev/null; echo $?) == 0 ]]; then
+    #         echo "Installing thefuck (using pip3)"
+    #         pip3 install git+https://github.com/nvbn/thefuck # install from source to work around imp removal from 3.12
+    #         installed=1
+    #     fi
+    #     if [[ $installed == 0 ]]; then
+    #         if [[ -f ~/.config/thefuck/settings.py ]]; then
+    #             mv ~/.config/thefuck/settings.py ~/.config/thefuck/settings-orig.py
+    #         fi
+    #         if [[ -f ~/.config/thefuck/rules ]]; then
+    #             mv ~/.config/thefuck/rules ~/.config/thefuck/rules-orig
+    #         fi
+    #         mkdir -p ~/.config/thefuck
+    #         ln -s "${BASE_DIR}/.config/thefuck/settings.py" ~/.config/thefuck/settings.py
+    #         ln -s "${BASE_DIR}/.config/thefuck/rules" ~/.config/thefuck/rules
+    #     else
+    #         echo "thefuck not installed (pip not found)"
+    #     fi
+    # fi
 
 
     if [[ $(command -v dig > /dev/null; echo $?) == 1 ]]; then
