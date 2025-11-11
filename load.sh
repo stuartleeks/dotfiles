@@ -5,6 +5,18 @@
 
 export PATH=$PATH:~/bin:~/.local/bin
 
+if [[ -n "$_VSCODE_COPILOT" ]]; then
+    # Add this to VSCode settings.json:
+    # "chat.tools.terminal.terminalProfile.linux": {
+    # 	"path": "bash",
+    # 	"env": {
+    # 		"_VSCODE_COPILOT": "true"
+    # 	}
+    # }
+    echo "VSCode Copilot detected, skipping load.sh"
+    return
+fi
+
 source "$DOTFILES_FOLDER/aliases/load.sh"
 source "$DOTFILES_FOLDER/bash-completion/load.sh"
 source "$DOTFILES_FOLDER/bash-git-prompt/load.sh"
