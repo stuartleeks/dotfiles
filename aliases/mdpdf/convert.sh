@@ -18,5 +18,4 @@ echo $script_dir
 echo "Converting $1 to ${1%.md}.pdf ..."
 # use custom template for styling
 # disable smart extension for markdown as that converts quotes and inserts non-breaking spaces which messes up the PDF layout
-# TODO - update the styling for codeblocks in the template
 pandoc -o "${1%.md}.pdf" -i "$1" --pdf-engine=weasyprint -V mainfont="Ubuntu Sans" -V papersize:a4 --template=$script_dir/template.html --metadata title="${1%}" --from markdown-smart

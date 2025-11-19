@@ -18,6 +18,73 @@
 			max-width: 100%;
 			height: auto;
 		}
+
+		/* Code block styling for pandoc sourceCode elements */
+		pre {
+			background-color: #f8f8f8;
+			border: 1px solid #e1e1e1;
+			border-radius: 4px;
+			padding: 12px;
+			margin: 16px 0;
+			overflow-x: auto;
+			font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+			font-size: 0.9em;
+			line-height: 1.4;
+		}
+
+		code {
+			font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+			font-size: 0.9em;
+		}
+
+		/* Inline code styling */
+		p code, li code, td code {
+			background-color: #f1f1f1;
+			padding: 2px 4px;
+			border-radius: 3px;
+			border: 1px solid #e1e1e1;
+		}
+
+		/* Pandoc sourceCode div wrapper */
+		div.sourceCode {
+			margin: 16px 0;
+		}
+
+		/* Code block within sourceCode div */
+		div.sourceCode pre {
+			margin: 0;
+		}
+
+		/* Syntax highlighting classes (basic styling) */
+		.sourceCode .kw { color: #0000ff; font-weight: bold; } /* Keyword */
+		.sourceCode .dt { color: #008080; } /* DataType */
+		.sourceCode .dv { color: #ff6600; } /* DecVal */
+		.sourceCode .bn { color: #ff6600; } /* BaseN */
+		.sourceCode .fl { color: #ff6600; } /* Float */
+		.sourceCode .ch { color: #008080; } /* Char */
+		.sourceCode .st { color: #008000; } /* String */
+		.sourceCode .co { color: #808080; font-style: italic; } /* Comment */
+		.sourceCode .ot { color: #0000ff; } /* Other */
+		.sourceCode .al { color: #ff0000; } /* Alert */
+		.sourceCode .fu { color: #800080; } /* Function */
+		.sourceCode .er { color: #ff0000; font-weight: bold; } /* Error */
+		.sourceCode .wa { color: #ff8000; font-weight: bold; } /* Warning */
+		.sourceCode .cn { color: #008080; } /* Constant */
+		.sourceCode .sc { color: #008080; } /* SpecialChar */
+		.sourceCode .vs { color: #008000; } /* VerbatimString */
+		.sourceCode .ss { color: #008000; } /* SpecialString */
+		.sourceCode .im { color: #800080; } /* Import */
+		.sourceCode .va { color: #000000; } /* Variable */
+		.sourceCode .cf { color: #0000ff; font-weight: bold; } /* ControlFlow */
+		.sourceCode .op { color: #000000; } /* Operator */
+		.sourceCode .bu { color: #800080; } /* BuiltIn */
+		.sourceCode .ex { color: #800080; } /* Extension */
+		.sourceCode .pp { color: #ff6600; font-weight: bold; } /* Preprocessor */
+		.sourceCode .at { color: #008080; } /* Attribute */
+		.sourceCode .do { color: #808080; font-style: italic; } /* Documentation */
+		.sourceCode .an { color: #808080; font-style: italic; } /* Annotation */
+		.sourceCode .cv { color: #808080; font-style: italic; } /* CommentVar */
+		.sourceCode .in { color: #808080; font-style: italic; } /* Information */
 	</style>
 </head>
 
