@@ -39,6 +39,8 @@ fi
 # Check if wkhtmltopdf is installed (for better PDF generation)
 if command -v wkhtmltopdf &> /dev/null; then
     # Use wkhtmltopdf for better rendering
+    TEMP_HTML=$(mktemp /tmp/mdpdf_XXXXXX.html)
+    
     pandoc "$INPUT_FILE" \
         --standalone \
         --self-contained \
@@ -46,15 +48,15 @@ if command -v wkhtmltopdf &> /dev/null; then
         --metadata title="Document" \
         -f markdown \
         -t html5 \
-        -o /tmp/mdpdf_temp.html
+        -o "$TEMP_HTML"
     
     wkhtmltopdf \
         --enable-local-file-access \
         --print-media-type \
-        /tmp/mdpdf_temp.html \
+        "$TEMP_HTML" \
         "$OUTPUT_FILE"
     
-    rm -f /tmp/mdpdf_temp.html
+    rm -f "$TEMP_HTML"
 else
     # Fallback to pandoc's built-in PDF generation
     echo "Note: wkhtmltopdf not found, using pandoc's PDF engine (install wkhtmltopdf for better results)"
