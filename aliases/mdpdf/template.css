@@ -1,0 +1,201 @@
+/* Markdown to PDF Template Styling */
+
+/* General document styling */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-size: 14px;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+h1 {
+    font-size: 2em;
+    border-bottom: 2px solid #eaecef;
+    padding-bottom: 0.3em;
+}
+
+h2 {
+    font-size: 1.5em;
+    border-bottom: 1px solid #eaecef;
+    padding-bottom: 0.3em;
+}
+
+h3 { font-size: 1.25em; }
+h4 { font-size: 1em; }
+h5 { font-size: 0.875em; }
+h6 { font-size: 0.85em; color: #6a737d; }
+
+/* Links */
+a {
+    color: #0366d6;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Inline code */
+code {
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 85%;
+    background-color: #f6f8fa;
+    border-radius: 3px;
+    font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', 'Courier', monospace;
+}
+
+/* Code blocks - Main styling for TODO improvement */
+pre {
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f6f8fa;
+    border-radius: 6px;
+    border: 1px solid #d0d7de;
+    margin-bottom: 16px;
+}
+
+pre code {
+    display: block;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    border: 0;
+    font-size: 100%;
+    word-break: normal;
+    white-space: pre;
+    word-wrap: normal;
+}
+
+/* Syntax highlighting for code blocks */
+.sourceCode {
+    background-color: #f6f8fa;
+    border-radius: 6px;
+}
+
+/* Specific syntax highlighting colors */
+.sourceCode .kw { color: #d73a49; font-weight: bold; } /* Keyword */
+.sourceCode .dt { color: #6f42c1; } /* DataType */
+.sourceCode .dv { color: #005cc5; } /* DecVal */
+.sourceCode .bn { color: #005cc5; } /* BaseN */
+.sourceCode .fl { color: #005cc5; } /* Float */
+.sourceCode .ch { color: #032f62; } /* Char */
+.sourceCode .st { color: #032f62; } /* String */
+.sourceCode .co { color: #6a737d; font-style: italic; } /* Comment */
+.sourceCode .ot { color: #005cc5; } /* Other */
+.sourceCode .al { color: #d73a49; font-weight: bold; } /* Alert */
+.sourceCode .fu { color: #6f42c1; } /* Function */
+.sourceCode .er { color: #d73a49; font-weight: bold; } /* Error */
+.sourceCode .wa { color: #d73a49; font-weight: bold; } /* Warning */
+.sourceCode .cn { color: #005cc5; } /* Constant */
+.sourceCode .sc { color: #032f62; } /* SpecialChar */
+.sourceCode .vs { color: #032f62; } /* VerbatimString */
+.sourceCode .ss { color: #032f62; } /* SpecialString */
+.sourceCode .im { color: #000000; } /* Import */
+.sourceCode .va { color: #e36209; } /* Variable */
+.sourceCode .cf { color: #d73a49; font-weight: bold; } /* ControlFlow */
+.sourceCode .op { color: #d73a49; } /* Operator */
+.sourceCode .pp { color: #d73a49; } /* Preprocessor */
+.sourceCode .at { color: #6f42c1; } /* Attribute */
+.sourceCode .do { color: #6a737d; font-style: italic; } /* Documentation */
+.sourceCode .an { color: #6a737d; font-style: italic; } /* Annotation */
+.sourceCode .cv { color: #6a737d; font-style: italic; } /* CommentVar */
+.sourceCode .in { color: #6a737d; font-style: italic; } /* Information */
+
+/* Blockquotes */
+blockquote {
+    padding: 0 1em;
+    color: #6a737d;
+    border-left: 0.25em solid #dfe2e5;
+    margin: 0 0 16px 0;
+}
+
+blockquote > :first-child {
+    margin-top: 0;
+}
+
+blockquote > :last-child {
+    margin-bottom: 0;
+}
+
+/* Lists */
+ul, ol {
+    padding-left: 2em;
+    margin-bottom: 16px;
+}
+
+li + li {
+    margin-top: 0.25em;
+}
+
+/* Tables */
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+    width: 100%;
+}
+
+table th {
+    font-weight: 600;
+    padding: 6px 13px;
+    border: 1px solid #d0d7de;
+    background-color: #f6f8fa;
+}
+
+table td {
+    padding: 6px 13px;
+    border: 1px solid #d0d7de;
+}
+
+table tr {
+    background-color: #ffffff;
+    border-top: 1px solid #d0d7de;
+}
+
+table tr:nth-child(2n) {
+    background-color: #f6f8fa;
+}
+
+/* Horizontal rule */
+hr {
+    height: 0.25em;
+    padding: 0;
+    margin: 24px 0;
+    background-color: #e1e4e8;
+    border: 0;
+}
+
+/* Images */
+img {
+    max-width: 100%;
+    box-sizing: content-box;
+}
+
+/* Print-specific styles */
+@media print {
+    body {
+        max-width: 100%;
+    }
+    
+    pre {
+        page-break-inside: avoid;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+    }
+}

@@ -167,3 +167,5 @@ get_lichess_puzzle_rating() { curl -s https://lichess.org/api/user/$1 -H 'Accept
 
 alias get-chars="$DIR/get-chars.sh"
 alias op-chars="$DIR/op-chars.sh"
+
+alias mdpdf="$DIR/mdpdf/convert.sh"
